@@ -10,7 +10,7 @@ export default function About() {
   const features = [
     "Private Swimming Pool",
     "Scenic Lake View",
-    "3 Spacious Bedrooms",
+    "6 Spacious Bedrooms",
     "Perfect for Families & Groups"
   ];
 

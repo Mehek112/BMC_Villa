@@ -24,12 +24,12 @@ function Rooms() {
   const highlights = [
     {
       icon: <BedDouble size={26} />,
-      value: "3",
+      value: "6",
       label: "Bedrooms",
     },
     {
       icon: <Bath size={26} />,
-      value: "3",
+      value: "6",
       label: "Bathrooms",
     },
     {
@@ -37,11 +37,11 @@ function Rooms() {
       value: "12",
       label: "Guests",
     },
-    {
-      icon: <Waves size={26} />,
-      value: "Private",
-      label: "Swimming Pool",
-    },
+    // {
+    //   icon: <Waves size={26} />,
+    //   value: "Private",
+    //   label: "Swimming Pool",
+    // },
   ];
 
 

@@ -7,6 +7,7 @@ import {
   BedDouble,
   Home,
   MapPinned,
+  Trophy,
 } from "lucide-react";
 
 const highlights = [
@@ -20,11 +21,15 @@ const highlights = [
   },
   {
     icon: <BedDouble size={24} />,
-    title: "3 BHK",
+    title: "6 BHK",
   },
   {
     icon: <MapPinned size={24} />,
     title: "Lake View",
+  },
+  {
+    icon: <Trophy size={24} />,
+    title: "Cricket Turf",
   },
 ];
 

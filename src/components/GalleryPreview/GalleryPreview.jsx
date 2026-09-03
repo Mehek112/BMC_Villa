@@ -8,7 +8,7 @@ import {
   gallery1,
   gallery2,
   gallery3,
-  gallery4,
+
 } from "../../assets";
 
 export default function GalleryPreview() {
@@ -17,7 +17,7 @@ export default function GalleryPreview() {
     gallery1,
     gallery2,
     gallery3,
-    gallery4,
+   
   ];
 
   return (
@@ -27,7 +27,7 @@ export default function GalleryPreview() {
 
         <div className="section-heading">
 
-          <p>GALLERY</p>
+        
 
           <h2>A Glimpse of Your Stay</h2>
 
@@ -66,26 +66,17 @@ export default function GalleryPreview() {
                 loading="lazy"
               />
 
-            </div>
+             </div>
 
-            <div className={styles.image}>
-
-              <img
-                src={images[2]}
-                alt="Villa Interior"
-                loading="lazy"
-              />
-
-            </div>
-
+           
             <Link
               to="/gallery"
               className={`${styles.image} ${styles.last}`}
             >
 
               <img
-                src={images[3]}
-                alt="Luxury Bedroom"
+                src={images[2]}
+                alt="Villa Interior"
                 loading="lazy"
               />
 

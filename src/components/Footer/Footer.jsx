@@ -16,7 +16,7 @@ export default function Footer() {
 
           <div>
 
-            <h2>Lake View Villa</h2>
+            <h2>SAMRAJYA VILLA</h2>
 
             <p>
               Escape to luxury with breathtaking lake views,
@@ -70,7 +70,7 @@ export default function Footer() {
 
               <li>
                 <MapPin size={18} />
-                Address Coming Soon
+               7F8P+G46, Dangurle, Maharashtra 421401
               </li>
 
             </ul>

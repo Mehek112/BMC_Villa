@@ -1,126 +1,301 @@
-@import "../../styles/variables";
+@use "../../styles/variables" as *;
+
+
+/* =========================================
+   HERO
+========================================= */
 
 .hero {
 
-    padding-top:140px;
-    padding-bottom:80px;
+  padding: 85px 0 55px;
 
-    background:linear-gradient(
-        180deg,
-        #EEF5FF,
-        #FFFFFF
-    );
+  text-align: center;
 
-    text-align:center;
+  background: #ffffff;
 
 }
 
-.hero h1{
 
-    font-family:"Playfair Display",serif;
+.eyebrow {
 
-    font-size:64px;
+  margin-bottom: 14px;
 
-    margin-bottom:18px;
+  color: $primary;
 
-    color:$text;
+  font-size: 13px;
 
-}
+  font-weight: 700;
 
-.hero p{
+  letter-spacing: 3px;
 
-    font-size:18px;
-
-    color:$text-light;
-
-    max-width:650px;
-
-    margin:auto;
-
-    line-height:1.8;
+  text-transform: uppercase;
 
 }
 
-.gallery{
 
-    padding:90px 0;
+.hero h1 {
 
-    background:white;
+  margin-bottom: 18px;
 
-}
+  font-family: "Playfair Display", serif;
 
-.grid{
+  font-size: clamp(42px, 5vw, 64px);
 
-    columns:4 280px;
+  font-weight: 500;
 
-    column-gap:22px;
+  line-height: 1.15;
 
-}
-
-.card{
-
-    overflow:hidden;
-
-    border-radius:22px;
-
-    margin-bottom:22px;
-
-    break-inside:avoid;
-
-    cursor:pointer;
-
-    box-shadow:$shadow-sm;
+  color: $text;
 
 }
 
-.card img{
 
-    width:100%;
+.subtitle {
 
-    display:block;
+  max-width: 650px;
 
-    transition:.45s ease;
+  margin: 0 auto;
 
-}
+  color: $text-light;
 
-.card:hover img{
+  font-size: 16px;
 
-    transform:scale(1.08);
-
-}
-
-@media(max-width:992px){
-
-.grid{
-
-columns:3 250px;
+  line-height: 1.8;
 
 }
 
-}
 
-@media(max-width:768px){
 
-.hero h1{
+/* =========================================
+   GALLERY
+========================================= */
 
-font-size:48px;
+.gallery {
 
-}
+  padding: 25px 0 100px;
 
-.grid{
-
-columns:2 220px;
+  background: #ffffff;
 
 }
 
+
+.galleryContainer {
+
+  width: min(1220px, 90%);
+
+  margin: 0 auto;
+
+
+  display: grid;
+
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+
+  gap: 18px;
+
+
+  /*
+    VERY IMPORTANT:
+
+    Both columns start at the top,
+    but their contents can have independent heights.
+  */
+
+  align-items: start;
+
 }
 
-@media(max-width:550px){
 
-.grid{
 
-columns:1;
+/* =========================================
+   INDIVIDUAL COLUMN
+========================================= */
+
+.column {
+
+  display: flex;
+
+  flex-direction: column;
+
+
+  /*
+    Your "one line space"
+    between every photo.
+  */
+
+  gap: 18px;
 
 }
+
+
+
+/* =========================================
+   IMAGE CARD
+========================================= */
+
+.card {
+
+  width: 100%;
+
+  margin: 0;
+
+  overflow: hidden;
+
+
+  border-radius: 18px;
+
+
+  background: #f7f9fc;
+
+
+  box-shadow:
+
+    0 6px 20px rgba(15, 23, 42, 0.05);
+
+
+  transition:
+
+    transform 0.35s ease,
+
+    box-shadow 0.35s ease;
+
+}
+
+
+
+/*
+IMPORTANT:
+
+NO fixed height.
+NO aspect-ratio.
+
+The photograph determines its own height.
+*/
+
+.card img {
+
+  width: 100%;
+
+  height: auto;
+
+  display: block;
+
+
+  object-fit: contain;
+
+
+  transition:
+
+    transform 0.45s ease;
+
+}
+
+
+
+.card:hover {
+
+  transform: translateY(-3px);
+
+
+  box-shadow:
+
+    0 12px 30px rgba(15, 23, 42, 0.09);
+
+}
+
+
+
+.card:hover img {
+
+  transform: scale(1.015);
+
+}
+
+
+
+/* =========================================
+   TABLET
+========================================= */
+
+@media (max-width: 900px) {
+
+  .galleryContainer {
+
+    width: 92%;
+
+    gap: 14px;
+
+  }
+
+
+  .column {
+
+    gap: 14px;
+
+  }
+
+}
+
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 700px) {
+
+
+  .hero {
+
+    padding: 65px 0 40px;
+
+  }
+
+
+  .hero h1 {
+
+    font-size: 40px;
+
+  }
+
+
+  .subtitle {
+
+    font-size: 15px;
+
+  }
+
+
+
+  .gallery {
+
+    padding-bottom: 70px;
+
+  }
+
+
+
+  .galleryContainer {
+
+    width: 92%;
+
+
+    /*
+      Mobile becomes one column.
+    */
+
+    grid-template-columns: 1fr;
+
+    gap: 14px;
+
+  }
+
+
+
+  .column {
+
+    gap: 14px;
+
+  }
+
 
 }

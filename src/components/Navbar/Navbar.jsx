@@ -8,7 +8,7 @@ export default function Navbar() {
       <div className={styles.container}>
 
         <NavLink to="/" className={styles.logo}>
-          <span>LAKE VIEW Villa</span>
+          <span>SAMRAJYA VILLA</span>
           
         </NavLink>
 

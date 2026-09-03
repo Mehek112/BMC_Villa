@@ -10,7 +10,7 @@ export default function Location() {
       <div className="container">
 
         <div className="section-heading">
-          <p>LOCATION</p>
+         
 
           <h2>Escape to a Peaceful Lakeside Retreat</h2>
 
@@ -47,10 +47,10 @@ export default function Location() {
 
               <div>
 
-                <h3>Lake View Villa</h3>
+                <h3>SAMRAJYA VILLA</h3>
 
                 <p>
-                  Full address will be updated soon.
+                  7F8P+G46, Dangurle, Maharashtra 421401
                 </p>
 
               </div>
