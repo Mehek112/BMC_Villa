@@ -1,0 +1,246 @@
+@import "../../styles/variables";
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+
+  width: 100%;
+
+  background: rgba(255, 255, 255, 0.92);
+
+  backdrop-filter: blur(16px);
+
+  border-bottom: 1px solid rgba(226, 232, 240, .8);
+
+  box-shadow: 0 4px 20px rgba(15, 23, 42, .05);
+}
+
+.container {
+
+  width: min(92%, 1320px);
+
+  height: 82px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+}
+
+.logo {
+
+  display: flex;
+
+  flex-direction: column;
+
+  text-decoration: none;
+
+  line-height: 1;
+
+}
+
+.logo span {
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 28px;
+
+  font-weight: 700;
+
+  color: $text;
+
+  letter-spacing: 1px;
+
+}
+
+.logo small {
+
+  margin-top: 4px;
+
+  font-size: 13px;
+
+  letter-spacing: 5px;
+
+  text-transform: uppercase;
+
+  color: $primary;
+
+}
+
+.links {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 34px;
+
+}
+
+.links a {
+
+  position: relative;
+
+  color: $text-light;
+
+  text-decoration: none;
+
+  font-size: 15px;
+
+  font-weight: 500;
+
+  transition: $transition;
+
+}
+
+.links a:hover {
+
+  color: $primary;
+
+}
+
+.links a::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 0;
+
+  bottom: -8px;
+
+  width: 0;
+
+  height: 2px;
+
+  background: $primary;
+
+  border-radius: 20px;
+
+  transition: .3s;
+
+}
+
+.links a:hover::after,
+.links a.active::after {
+
+  width: 100%;
+
+}
+
+.bookButton {
+
+  margin-left: 10px;
+
+  padding: 13px 26px;
+
+  border-radius: 999px;
+
+  background: linear-gradient(
+    135deg,
+    $primary,
+    $primary-dark
+  );
+
+  color: white !important;
+
+  box-shadow: 0 12px 30px rgba(47, 107, 255, .25);
+
+  transition: .35s ease;
+
+}
+
+.bookButton:hover {
+
+  transform: translateY(-3px);
+
+  box-shadow: 0 16px 36px rgba(47, 107, 255, .35);
+
+}
+
+.bookButton::after {
+
+  display: none;
+
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 900px) {
+
+  .container {
+
+    height: 74px;
+
+  }
+
+  .links {
+
+    gap: 18px;
+
+  }
+
+  .logo span {
+
+    font-size: 24px;
+
+  }
+
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 768px) {
+
+  .container {
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    gap: 14px;
+
+    height: auto;
+
+    padding: 16px 0;
+
+  }
+
+  .links {
+
+    flex-wrap: wrap;
+
+    justify-content: center;
+
+    gap: 16px;
+
+  }
+
+  .logo {
+
+    align-items: center;
+
+  }
+
+  .logo span {
+
+    font-size: 24px;
+
+  }
+
+  .bookButton {
+
+    padding: 11px 20px;
+
+  }
+
+}

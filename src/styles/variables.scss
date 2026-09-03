@@ -1,0 +1,150 @@
+// =========================================
+// COLORS
+// =========================================
+
+// Primary
+
+$primary: #2F6BFF;
+$primary-dark: #1D4ED8;
+$primary-light: #EEF5FF;
+
+
+// Backgrounds
+
+$white: #FFFFFF;
+
+$bg: #FFFFFF;
+
+$bg-soft: #F8FAFC;
+
+$bg-warm: #FFF9F3;
+
+$bg-secondary: #F7F9FC;
+
+
+// Text
+
+$text: #1E293B;
+
+$text-light: #64748B;
+
+
+// Border
+
+$border: #E8ECF2;
+
+
+// =========================================
+// BORDER RADIUS
+// =========================================
+
+$radius-sm: 12px;
+$radius-md: 16px;
+$radius-lg: 20px;
+$radius-xl: 28px;
+
+
+// =========================================
+// SHADOWS
+// =========================================
+
+$shadow-sm: 0 4px 12px rgba(15, 23, 42, .05);
+
+$shadow-md: 0 10px 30px rgba(15, 23, 42, .08);
+
+$shadow-lg: 0 20px 45px rgba(15, 23, 42, .12);
+
+
+// =========================================
+// LAYOUT
+// =========================================
+
+$container: 1320px;
+
+$navbar-height: 80px;
+
+
+// =========================================
+// TRANSITION
+// =========================================
+
+$transition: .35s ease;
+
+
+// =========================================
+// COMPATIBILITY ALIASES
+// Used by Pages:
+// Rooms
+// Booking
+// Payment
+// =========================================
+
+
+// Background aliases
+
+$background-white: $white;
+
+$background-light: $bg-soft;
+
+
+// Layout aliases
+
+$max-width: $container;
+
+
+// Border aliases
+
+$border-color: $border;
+
+$card-border: $border;
+
+
+// Radius aliases
+
+$radius-button: 999px;
+
+$radius-card: $radius-lg;
+
+$radius-input: $radius-md;
+
+$radius-modal: $radius-xl;
+
+
+// Primary aliases
+
+$primary-blue: $primary;
+
+$primary-blue-dark: $primary-dark;
+
+
+// Text aliases
+
+$text-primary: $text;
+
+$text-secondary: $text-light;
+
+
+// UI colors
+
+$light-blue: $primary-light;
+
+
+// Transition aliases
+
+$transition-fast: .2s ease;
+
+$transition-normal: $transition;
+
+
+// Fonts
+
+$font-heading: "Playfair Display", serif;
+
+$font-body: "Inter", sans-serif;
+
+
+// Shadow aliases
+
+$shadow-card: $shadow-md;
+
+$shadow-modal: $shadow-lg;

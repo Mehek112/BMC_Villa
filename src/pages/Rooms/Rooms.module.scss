@@ -1,0 +1,878 @@
+@use "../../styles/variables" as *;
+
+
+.roomsPage {
+  background-color: $background-white;
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero {
+
+  position: relative;
+
+  min-height: 520px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background-image: url("../../assets/images/rooms/rooms-hero.jpg");
+
+  background-size: cover;
+
+  background-position: center;
+
+}
+
+
+.heroOverlay {
+
+  position: absolute;
+
+  inset: 0;
+
+  background:
+    linear-gradient(
+      rgba(14,35,72,.65),
+      rgba(14,35,72,.45)
+    );
+
+}
+
+
+
+.heroContent {
+
+  position: relative;
+
+  z-index: 2;
+
+  width: min(850px,90%);
+
+  margin: auto;
+
+  display:flex;
+
+  flex-direction:column;
+
+  align-items:center;
+
+  justify-content:center;
+
+  text-align:center;
+
+  color:white;
+
+}
+
+
+
+.eyebrow {
+
+  display:block;
+
+  margin-bottom:18px;
+
+  font-size:.95rem;
+
+  font-weight:700;
+
+  letter-spacing:3px;
+
+  text-transform:uppercase;
+
+  color:#dbeafe;
+
+}
+
+
+
+.heroContent h1 {
+
+  margin-bottom:20px;
+
+  font-size:clamp(2.8rem,6vw,5rem);
+
+  color:white;
+
+}
+
+
+
+.heroContent p {
+
+  max-width:680px;
+
+  margin:0 auto;
+
+  font-size:1.1rem;
+
+  line-height:1.8;
+
+  color:rgba(255,255,255,.92);
+
+}
+
+
+
+
+
+/* =========================
+   GLOBAL CONTAINER
+========================= */
+
+
+.container {
+
+  width:90%;
+
+  max-width:1300px;
+
+  margin:0 auto;
+
+}
+
+
+
+
+
+/* =========================
+   SECTION HEADING
+========================= */
+
+
+.sectionHeading {
+
+  text-align:center;
+
+  max-width:700px;
+
+  margin:0 auto 50px;
+
+
+  span {
+
+    display:block;
+
+    text-transform:uppercase;
+
+    letter-spacing:3px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    color:$primary-blue;
+
+    margin-bottom:18px;
+
+  }
+
+
+  h2 {
+
+    margin:0 auto 20px;
+
+    font-size:clamp(2rem,4vw,3rem);
+
+    font-weight:500;
+
+    line-height:1.2;
+
+    color:$text-primary;
+
+  }
+
+
+  p {
+
+    margin:0 auto;
+
+    max-width:550px;
+
+    line-height:1.8;
+
+    font-size:18px;
+
+    color:$text-secondary;
+
+  }
+
+}
+
+
+
+
+
+/* =========================
+   OVERVIEW
+========================= */
+
+
+.overviewSection {
+
+  padding:90px 0;
+
+  background-color:$background-light;
+
+}
+
+
+
+
+
+.highlightsGrid {
+
+  display:grid;
+
+  grid-template-columns:repeat(4,1fr);
+
+  gap:24px;
+
+}
+
+
+
+
+
+.highlightCard {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:16px;
+
+  padding:24px;
+
+  background:white;
+
+  border:1px solid $card-border;
+
+  border-radius:$radius-card;
+
+  box-shadow:$shadow-card;
+
+
+  transition:
+
+  transform $transition-normal,
+
+  box-shadow $transition-normal;
+
+}
+
+
+
+.highlightCard:hover {
+
+  transform:translateY(-6px);
+
+  box-shadow:0 16px 36px rgba(15,23,42,.1);
+
+}
+
+
+
+
+.iconWrapper {
+
+  width:54px;
+
+  height:54px;
+
+  flex-shrink:0;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  background-color:$light-blue;
+
+  color:$primary-blue;
+
+  border-radius:50%;
+
+}
+
+
+
+.highlightCard h3 {
+
+  margin-bottom:2px;
+
+  font-family:$font-body;
+
+  font-size:1.35rem;
+
+}
+
+
+
+.highlightCard p {
+
+  color:$text-secondary;
+
+  font-size:.9rem;
+
+}
+
+
+
+
+
+/* =========================
+   ROOMS GRID
+========================= */
+
+
+.roomsSection {
+
+  padding:90px 0;
+
+  background-color:$background-white;
+
+}
+
+
+
+
+
+.roomsGrid {
+
+  display:grid;
+
+  grid-template-columns:repeat(3,1fr);
+
+  gap:30px;
+
+}
+
+
+
+
+
+.roomCard {
+
+  overflow:hidden;
+
+  background:white;
+
+  border:1px solid $card-border;
+
+  border-radius:$radius-card;
+
+  box-shadow:$shadow-card;
+
+
+  transition:
+
+  transform $transition-normal,
+
+  box-shadow $transition-normal;
+
+}
+
+
+
+.roomCard:hover {
+
+  transform:translateY(-8px);
+
+  box-shadow:0 20px 45px rgba(15,23,42,.12);
+
+}
+
+
+
+
+.roomImageWrapper {
+
+  height:260px;
+
+  overflow:hidden;
+
+}
+
+
+
+.roomImage {
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  transition:transform .5s ease;
+
+}
+
+
+
+.roomCard:hover .roomImage {
+
+  transform:scale(1.05);
+
+}
+
+
+
+
+.roomContent {
+
+  padding:26px;
+
+}
+
+
+
+.roomContent h3 {
+
+  margin-bottom:12px;
+
+  font-size:1.65rem;
+
+}
+
+
+
+.roomDescription {
+
+  margin-bottom:22px;
+
+  color:$text-secondary;
+
+  line-height:1.7;
+
+}
+
+
+
+
+
+.roomFeatures {
+
+  display:flex;
+
+  flex-direction:column;
+
+  gap:12px;
+
+  margin-bottom:24px;
+
+}
+
+
+
+.roomFeatures div {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  color:$text-secondary;
+
+  font-size:.95rem;
+
+}
+
+
+
+.roomFeatures svg {
+
+  color:$primary-blue;
+
+}
+
+
+
+
+
+.detailsButton {
+
+  width:100%;
+
+  padding:13px 20px;
+
+  border:1px solid $primary-blue;
+
+  border-radius:$radius-button;
+
+  background:white;
+
+  color:$primary-blue;
+
+  font-weight:600;
+
+  cursor:pointer;
+
+
+  transition:
+
+  background-color $transition-normal,
+
+  color $transition-normal,
+
+  transform $transition-normal;
+
+}
+
+
+
+.detailsButton:hover {
+
+  background:$primary-blue;
+
+  color:white;
+
+  transform:translateY(-2px);
+
+}
+
+
+
+
+
+/* =========================
+   MODAL
+========================= */
+
+
+.modalBackdrop {
+
+  position:fixed;
+
+  inset:0;
+
+  z-index:2000;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  padding:24px;
+
+  background:rgba(15,23,42,.45);
+
+  backdrop-filter:blur(6px);
+
+}
+
+
+
+
+.modal {
+
+  position:relative;
+
+  display:grid;
+
+  grid-template-columns:1fr 1fr;
+
+  width:min(900px,100%);
+
+  max-height:90vh;
+
+  overflow:auto;
+
+  background:white;
+
+  border-radius:$radius-modal;
+
+  box-shadow:$shadow-modal;
+
+}
+
+
+
+
+
+.closeButton {
+
+  position:absolute;
+
+  top:18px;
+
+  right:18px;
+
+  z-index:2;
+
+  width:42px;
+
+  height:42px;
+
+  display:flex;
+
+  align-items:center;
+
+  justify-content:center;
+
+  border-radius:50%;
+
+  border:none;
+
+  background:white;
+
+  cursor:pointer;
+
+}
+
+
+
+
+.modalImageWrapper {
+
+  min-height:500px;
+
+}
+
+
+
+.modalImageWrapper img {
+
+  width:100%;
+
+  height:100%;
+
+  object-fit:cover;
+
+  border-radius:$radius-modal 0 0 $radius-modal;
+
+}
+
+
+
+.modalContent {
+
+  padding:56px 42px 42px;
+
+}
+
+
+
+.modalEyebrow {
+
+  color:$primary-blue;
+
+  font-size:.85rem;
+
+  font-weight:600;
+
+  letter-spacing:1.5px;
+
+  text-transform:uppercase;
+
+}
+
+
+
+.modalDescription {
+
+  color:$text-secondary;
+
+  line-height:1.8;
+
+}
+
+
+
+.modalSummary {
+
+  display:grid;
+
+  gap:12px;
+
+  margin:30px 0;
+
+  padding:20px;
+
+  background:$background-light;
+
+  border-radius:$radius-input;
+
+}
+
+
+
+.modalSummary div {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+}
+
+
+
+.featureList {
+
+  display:grid;
+
+  gap:12px;
+
+  list-style:none;
+
+}
+
+
+
+.featureList li {
+
+  display:flex;
+
+  align-items:center;
+
+  gap:10px;
+
+  color:$text-secondary;
+
+}
+
+
+
+.featureList svg {
+
+  color:$primary-blue;
+
+}
+
+
+
+
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+
+@media(max-width:950px){
+
+
+.highlightsGrid {
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+
+.roomsGrid {
+
+grid-template-columns:repeat(2,1fr);
+
+}
+
+
+
+.modal {
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.modalImageWrapper {
+
+min-height:300px;
+
+}
+
+
+
+.modalImageWrapper img {
+
+border-radius:$radius-modal $radius-modal 0 0;
+
+}
+
+
+}
+
+
+
+
+@media(max-width:600px){
+
+
+.hero {
+
+min-height:430px;
+
+}
+
+
+
+.overviewSection,
+.roomsSection {
+
+padding:60px 0;
+
+}
+
+
+
+.highlightsGrid,
+.roomsGrid {
+
+grid-template-columns:1fr;
+
+}
+
+
+
+.roomImageWrapper {
+
+height:240px;
+
+}
+
+
+
+.modalBackdrop {
+
+padding:12px;
+
+}
+
+
+
+.modalContent {
+
+padding:42px 24px 28px;
+
+}
+
+
+
+.modalContent h2 {
+
+font-size:1.9rem;
+
+}
+
+
+
+.modalImageWrapper {
+
+min-height:230px;
+
+}
+
+
+}

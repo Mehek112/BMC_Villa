@@ -1,0 +1,616 @@
+@use "../../styles/variables" as *;
+
+.bookingPage {
+  background-color: $background-light;
+}
+
+.hero {
+  position: relative;
+  min-height: 430px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+   background-image: url("../../assets/images/rooms/rooms-hero.jpg");
+
+  background-position: center;
+  background-size: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    rgba(14, 35, 72, 0.58),
+    rgba(14, 35, 72, 0.38)
+  );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 1;
+
+  width: min(760px, 90%);
+  text-align: center;
+  color: white;
+
+  animation: fadeUp 0.8s ease;
+}
+
+.eyebrow {
+  display: inline-block;
+  margin-bottom: 14px;
+
+  color: #dbeafe;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.heroContent h1 {
+  margin-bottom: 18px;
+  color: white;
+  font-size: clamp(2.7rem, 6vw, 4.8rem);
+}
+
+.heroContent p {
+  max-width: 650px;
+  margin: 0 auto;
+
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.08rem;
+  line-height: 1.8;
+}
+
+.bookingSection {
+  padding: 90px 0;
+}
+
+.container {
+  width: min($max-width, 90%);
+  margin: 0 auto;
+}
+
+.bookingLayout {
+  display: grid;
+  grid-template-columns: minmax(0, 1.5fr) minmax(300px, 0.7fr);
+  gap: 32px;
+  align-items: start;
+}
+
+.formCard,
+.summaryCard {
+  background-color: white;
+  border: 1px solid $card-border;
+  border-radius: $radius-card;
+  box-shadow: $shadow-card;
+}
+
+.formCard {
+  padding: 42px;
+}
+
+.sectionHeading {
+  margin-bottom: 34px;
+}
+
+.sectionHeading span,
+.summaryEyebrow {
+  display: inline-block;
+  margin-bottom: 10px;
+
+  color: $primary-blue;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+}
+
+.sectionHeading h2,
+.summaryCard h2 {
+  margin-bottom: 12px;
+  font-size: 2.2rem;
+}
+
+.sectionHeading p {
+  color: $text-secondary;
+  line-height: 1.7;
+}
+
+.bookingForm {
+  display: grid;
+  gap: 26px;
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 22px;
+}
+
+.formGroup {
+  display: grid;
+  gap: 10px;
+}
+
+.formGroup label {
+  color: $text-primary;
+  font-weight: 600;
+}
+
+.formGroup input,
+.formGroup textarea {
+  width: 100%;
+  padding: 14px 16px;
+
+  border: 1px solid $border-color;
+  border-radius: $radius-input;
+
+  background-color: white;
+  color: $text-primary;
+
+  outline: none;
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast;
+}
+
+.formGroup textarea {
+  resize: vertical;
+}
+
+.formGroup input:focus,
+.formGroup textarea:focus {
+  border-color: $primary-blue;
+  box-shadow: 0 0 0 4px rgba(47, 107, 255, 0.1);
+}
+
+.stayOptions {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+}
+
+.stayOption {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+
+  padding: 18px;
+
+  border: 1px solid $border-color;
+  border-radius: $radius-input;
+
+  background-color: white;
+  color: $text-primary;
+  text-align: left;
+
+  transition:
+    border-color $transition-normal,
+    background-color $transition-normal,
+    transform $transition-normal;
+}
+
+.stayOption svg {
+  flex-shrink: 0;
+  color: $primary-blue;
+}
+
+.stayOption div {
+  display: grid;
+  gap: 3px;
+}
+
+.stayOption span {
+  color: $text-secondary;
+  font-size: 0.88rem;
+}
+
+.stayOption:hover {
+  transform: translateY(-2px);
+  border-color: $primary-blue;
+}
+
+.activeOption {
+  border-color: $primary-blue;
+  background-color: $light-blue;
+}
+
+.inputWithIcon {
+  position: relative;
+}
+
+.inputWithIcon svg {
+  position: absolute;
+  top: 50%;
+  left: 15px;
+
+  color: $primary-blue;
+  transform: translateY(-50%);
+  pointer-events: none;
+}
+
+.inputWithIcon input {
+  padding-left: 47px;
+}
+
+.submitButton {
+  padding: 15px 28px;
+
+  border-radius: $radius-button;
+  background-color: $primary-blue;
+  color: white;
+
+  font-size: 1rem;
+  font-weight: 600;
+
+  transition:
+    background-color $transition-normal,
+    transform $transition-normal,
+    box-shadow $transition-normal;
+}
+
+.submitButton:hover {
+  background-color: $primary-blue-dark;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 24px rgba(47, 107, 255, 0.22);
+}
+
+.summaryCard {
+  position: sticky;
+  top: 100px;
+
+  padding: 32px;
+}
+
+.summaryDetails {
+  display: grid;
+  gap: 20px;
+
+  margin-top: 28px;
+  padding-bottom: 26px;
+
+  border-bottom: 1px solid $border-color;
+}
+
+.summaryDetails > div {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.summaryDetails span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  color: $text-secondary;
+}
+
+.summaryDetails svg {
+  color: $primary-blue;
+}
+
+.summaryDetails strong {
+  text-align: right;
+}
+
+.totalSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 26px 0;
+}
+
+.totalSection span {
+  color: $text-secondary;
+  font-weight: 600;
+}
+
+.totalSection strong {
+  color: $primary-blue;
+  font-family: $font-heading;
+  font-size: 1.8rem;
+}
+
+.notice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  padding: 16px;
+
+  background-color: $light-blue;
+  border-radius: $radius-input;
+}
+
+.notice svg {
+  flex-shrink: 0;
+  color: $primary-blue;
+}
+
+.notice p {
+  color: $text-secondary;
+  font-size: 0.88rem;
+  line-height: 1.6;
+}
+
+.formError {
+  padding: 12px 15px;
+
+  border: 1px solid #fecaca;
+  border-radius: $radius-input;
+
+  background-color: #fef2f2;
+  color: #b91c1c;
+
+  font-size: 0.92rem;
+}
+
+.modalBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 24px;
+
+  background-color: rgba(15, 23, 42, 0.45);
+  backdrop-filter: blur(6px);
+}
+
+.successModal {
+  position: relative;
+
+  width: min(480px, 100%);
+  padding: 44px 36px 34px;
+
+  background-color: white;
+  border-radius: $radius-modal;
+  box-shadow: $shadow-modal;
+
+  text-align: center;
+
+  animation: modalSlideUp 0.3s ease;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 40px;
+  height: 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: none;
+  border-radius: 50%;
+
+  background-color: $background-light;
+  color: $text-primary;
+
+  cursor: pointer;
+
+  transition:
+    color $transition-fast,
+    transform $transition-fast;
+}
+
+.closeButton:hover {
+  color: $primary-blue;
+  transform: rotate(90deg);
+}
+
+.successIcon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 22px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 50%;
+  background-color: $light-blue;
+  color: $primary-blue;
+}
+
+.successModal h2 {
+  margin-bottom: 14px;
+  font-size: 2rem;
+}
+
+.successModal > p {
+  color: $text-secondary;
+  line-height: 1.7;
+}
+
+.successSummary {
+  display: grid;
+  gap: 14px;
+
+  margin: 26px 0;
+  padding: 20px;
+
+  border-radius: $radius-input;
+  background-color: $background-light;
+
+  text-align: left;
+}
+
+.successSummary div {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.successSummary span {
+  color: $text-secondary;
+}
+
+.successSummary strong {
+  color: $text-primary;
+  text-align: right;
+}
+
+.confirmationNote {
+  font-size: 0.9rem;
+}
+
+.modalButton {
+  width: 100%;
+  margin-top: 24px;
+  padding: 14px 24px;
+
+  border: none;
+  border-radius: $radius-button;
+
+  background-color: $primary-blue;
+  color: white;
+
+  font-weight: 600;
+  cursor: pointer;
+
+  transition:
+    background-color $transition-normal,
+    transform $transition-normal;
+}
+
+.modalButton:hover {
+  background-color: $primary-blue-dark;
+  transform: translateY(-2px);
+}
+
+@keyframes modalSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.98);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 950px) {
+  .bookingLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .summaryCard {
+    position: static;
+  }
+}
+
+.availabilityNotice {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+
+  margin-bottom: 28px;
+  padding: 16px;
+
+  background-color: $light-blue;
+  border-radius: $radius-input;
+}
+
+.availabilityNotice svg {
+  flex-shrink: 0;
+  color: $primary-blue;
+}
+
+.availabilityNotice p {
+  color: $text-secondary;
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+.availableMessage,
+.unavailableMessage {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+
+  margin-top: 2px;
+  font-size: 0.87rem;
+  font-weight: 600;
+}
+
+.availableMessage {
+  color: #15803d;
+}
+
+.unavailableMessage {
+  color: #b91c1c;
+}
+
+.availableMessage svg,
+.unavailableMessage svg {
+  position: static;
+  transform: none;
+}
+
+.submitButton:disabled {
+  background-color: #94a3b8;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+@media (max-width: 650px) {
+  .hero {
+    min-height: 390px;
+  }
+
+  .bookingSection {
+    padding: 60px 0;
+  }
+
+  .formCard,
+  .summaryCard {
+    padding: 24px;
+  }
+
+  .formGrid,
+  .stayOptions {
+    grid-template-columns: 1fr;
+  }
+
+  .sectionHeading h2,
+  .summaryCard h2 {
+    font-size: 1.9rem;
+  }
+
+  .summaryDetails > div {
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .summaryDetails strong {
+    text-align: left;
+  }
+}

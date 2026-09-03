@@ -1,0 +1,128 @@
+@import "../../styles/variables";
+
+.footer {
+  background: #0f172a;
+  color: white;
+  padding: 70px 0 25px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1.3fr 1fr;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 34px;
+  margin-bottom: 18px;
+}
+
+h3 {
+  font-size: 20px;
+  margin-bottom: 18px;
+  font-weight: 600;
+}
+
+p {
+  color: #cbd5e1;
+  line-height: 1.8;
+  max-width: 340px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #cbd5e1;
+  margin-bottom: 16px;
+}
+
+li a {
+  color: inherit;
+  transition: $transition;
+}
+
+li a:hover {
+  color: white;
+}
+
+.social {
+  display: flex;
+  gap: 16px;
+}
+
+.social a {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.08);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: $transition;
+}
+
+.social a:hover {
+  background: $primary;
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(47, 107, 255, 0.35);
+}
+
+.bottom {
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  padding-top: 25px;
+  text-align: center;
+  color: #94a3b8;
+  font-size: 14px;
+}
+
+/* ===========================
+   Tablet
+=========================== */
+
+@media (max-width: 992px) {
+  .grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  p {
+    max-width: 100%;
+  }
+}
+
+/* ===========================
+   Mobile
+=========================== */
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 60px 0 20px;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 35px;
+    text-align: center;
+  }
+
+  h2 {
+    font-size: 30px;
+  }
+
+  li {
+    justify-content: center;
+  }
+
+  .social {
+    justify-content: center;
+  }
+}

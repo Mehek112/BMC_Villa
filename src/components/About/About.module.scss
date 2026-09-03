@@ -1,0 +1,177 @@
+@import "../../styles/variables";
+
+.about{
+
+    overflow:hidden;
+
+}
+
+.wrapper{
+
+    display:grid;
+
+    grid-template-columns:1.1fr 1fr;
+
+    gap:70px;
+
+    align-items:center;
+
+}
+
+.image{
+
+    border-radius:$radius-xl;
+
+    overflow:hidden;
+
+    box-shadow:$shadow-md;
+
+}
+
+.image img{
+
+    height:600px;
+
+    object-fit:cover;
+
+}
+
+.image:hover img{
+
+    transform:scale(1.05);
+
+}
+
+.content{
+
+    max-width:520px;
+
+}
+
+.tag{
+
+    color:$primary;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-weight:600;
+
+    margin-bottom:14px;
+
+}
+
+.content h2{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:48px;
+
+    line-height:1.2;
+
+    margin-bottom:24px;
+
+}
+
+.description{
+
+    color:$text-light;
+
+    line-height:1.9;
+
+    margin-bottom:35px;
+
+}
+
+.features{
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:18px;
+
+    margin-bottom:40px;
+
+}
+
+.feature{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:500;
+
+}
+
+.feature svg{
+
+    color:$primary;
+
+}
+
+button{
+
+    background:$primary;
+
+    color:white;
+
+    border:none;
+
+    padding:16px 30px;
+
+    border-radius:$radius-md;
+
+    box-shadow:$shadow-sm;
+
+}
+
+button:hover{
+
+    background:$primary-dark;
+
+}
+
+@media(max-width:992px){
+
+.wrapper{
+
+grid-template-columns:1fr;
+
+gap:50px;
+
+}
+
+.image img{
+
+height:450px;
+
+}
+
+.content{
+
+max-width:100%;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.features{
+
+grid-template-columns:1fr;
+
+}
+
+.content h2{
+
+font-size:36px;
+
+}
+
+}

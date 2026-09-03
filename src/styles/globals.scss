@@ -1,0 +1,158 @@
+@import "./variables";
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:"Inter",sans-serif;
+    background:$bg;
+    color:$text;
+    overflow-x:hidden;
+}
+
+img{
+    width:100%;
+    display:block;
+    transition:.5s ease;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button{
+    font-family:inherit;
+    cursor:pointer;
+    transition:$transition;
+}
+
+button:hover{
+    transform:translateY(-2px);
+}
+
+.container{
+    width:min(92%,$container);
+    margin:auto;
+}
+
+section{
+    padding:110px 0;
+}
+
+/* ---------- Section Background Helpers ---------- */
+
+.section-white{
+    background:$bg;
+}
+
+.section-soft{
+    background:$bg-soft;
+}
+
+.section-warm{
+    background:$bg-warm;
+}
+
+/* ---------- Reusable Heading ---------- */
+
+.section-heading{
+
+    text-align:center;
+
+    margin-bottom:60px;
+
+}
+
+.section-heading p{
+
+    color:$primary;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-size:14px;
+
+    font-weight:600;
+
+    margin-bottom:12px;
+
+}
+
+.section-heading h2{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:48px;
+
+    font-weight:700;
+
+    color:$text;
+
+}
+
+.section-heading span{
+
+    color:$text-light;
+
+    display:block;
+
+    margin-top:16px;
+
+    font-size:17px;
+
+    line-height:1.8;
+
+    max-width:650px;
+
+    margin-inline:auto;
+
+}
+
+/* ---------- Responsive ---------- */
+
+@media(max-width:992px){
+
+    section{
+
+        padding:90px 0;
+
+    }
+
+    .section-heading h2{
+
+        font-size:38px;
+
+    }
+
+}
+
+@media(max-width:768px){
+
+    .container{
+
+        width:92%;
+
+    }
+
+    .section-heading{
+
+        margin-bottom:45px;
+
+    }
+
+    .section-heading h2{
+
+        font-size:32px;
+
+    }
+
+}

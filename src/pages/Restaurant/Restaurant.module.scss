@@ -1,0 +1,402 @@
+@import "../../styles/variables";
+
+/* ===========================================
+   HERO
+=========================================== */
+
+.hero {
+  padding: 150px 0 100px;
+  text-align: center;
+  background: linear-gradient(180deg, #EEF5FF 0%, #FFFFFF 100%);
+}
+
+.tag {
+  display: inline-block;
+  padding: 8px 18px;
+  border-radius: 999px;
+  background: rgba(47, 107, 255, .08);
+  color: $primary;
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 22px;
+}
+
+.hero h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 64px;
+  margin-bottom: 20px;
+  color: $text;
+}
+
+.hero p {
+  max-width: 760px;
+  margin: auto;
+  color: $text-light;
+  line-height: 1.9;
+  font-size: 17px;
+}
+
+.heroCard {
+  margin: 60px auto 0;
+  max-width: 850px;
+  background: white;
+  border-radius: 24px;
+  padding: 35px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: $shadow-md;
+  border: 1px solid $border;
+}
+
+.heroCard h2 {
+  color: $primary;
+  font-size: 54px;
+}
+
+.heroCard span {
+  color: $text-light;
+}
+
+.line {
+  width: 1px;
+  height: 80px;
+  background: $border;
+}
+
+.includes {
+  display: grid;
+  grid-template-columns: repeat(2, auto);
+  gap: 16px 30px;
+}
+
+.includes span {
+  background: #EEF5FF;
+  color: $primary;
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ===========================================
+   ABOUT
+=========================================== */
+
+.about {
+  padding: 90px 0;
+}
+
+.aboutCard {
+  display: flex;
+  gap: 35px;
+  align-items: flex-start;
+  background: white;
+  border-radius: 24px;
+  padding: 45px;
+  border: 1px solid $border;
+  box-shadow: $shadow-sm;
+}
+
+.iconBox {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: #EEF5FF;
+  color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  margin-bottom: 18px;
+}
+
+.about p {
+  color: $text-light;
+  line-height: 1.9;
+  margin-bottom: 15px;
+}
+
+/* ===========================================
+   PACKAGE
+=========================================== */
+
+.package {
+  padding: 0 0 100px;
+}
+
+.packageCard {
+  background: linear-gradient(135deg, #2F6BFF, #1D4ED8);
+  color: white;
+  border-radius: 28px;
+  padding: 55px;
+  text-align: center;
+}
+
+.smallTitle {
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: .8;
+}
+
+.packageCard h2 {
+  margin: 15px 0 35px;
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+}
+
+.packageGrid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 22px;
+}
+
+.packageGrid div {
+  background: rgba(255,255,255,.12);
+  border-radius: 16px;
+  padding: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.packageGrid svg {
+  color: #FFD166;
+}
+
+/* ===========================================
+   MENU
+=========================================== */
+
+.menu {
+  background: $bg-soft;
+  padding: 100px 0;
+}
+
+.heading {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.heading p {
+  color: $primary;
+  font-weight: 600;
+  letter-spacing: 2px;
+  margin-bottom: 12px;
+}
+
+.heading h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 46px;
+}
+
+.menuGrid {
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 30px;
+}
+
+.menuCard {
+  background: white;
+  border-radius: 22px;
+  padding: 35px;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border;
+  transition: $transition;
+}
+
+.menuCard:hover {
+  transform: translateY(-8px);
+  box-shadow: $shadow-md;
+}
+
+.menuIcon {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  background: #EEF5FF;
+  color: $primary;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.menuCard h3 {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.menuCard ul {
+  list-style: none;
+}
+
+.menuCard li {
+  color: $text-light;
+  margin-bottom: 14px;
+  padding-left: 22px;
+  position: relative;
+}
+
+.menuCard li::before {
+  content: "•";
+  color: $primary;
+  position: absolute;
+  left: 0;
+}
+
+/* ===========================================
+   FEATURES
+=========================================== */
+
+.features {
+  padding: 100px 0;
+}
+
+.featureGrid {
+  display: grid;
+  grid-template-columns: repeat(4,1fr);
+  gap: 25px;
+}
+
+.featureCard {
+  background: white;
+  border-radius: 20px;
+  text-align: center;
+  padding: 35px 28px;
+  box-shadow: $shadow-sm;
+  border: 1px solid $border;
+  transition: $transition;
+}
+
+.featureCard:hover {
+  transform: translateY(-8px);
+  box-shadow: $shadow-md;
+}
+
+.featureCard svg {
+  color: $primary;
+  margin-bottom: 18px;
+}
+
+.featureCard h3 {
+  margin-bottom: 14px;
+}
+
+.featureCard p {
+  color: $text-light;
+  line-height: 1.8;
+}
+
+/* ===========================================
+   CTA
+=========================================== */
+
+.cta {
+  padding: 110px 0;
+  text-align: center;
+  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+}
+
+.cta h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 50px;
+  margin-bottom: 18px;
+}
+
+.cta p {
+  max-width: 700px;
+  margin: auto;
+  color: $text-light;
+  line-height: 1.8;
+  margin-bottom: 40px;
+}
+
+.contactButtons {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+}
+
+.contactButtons a {
+  padding: 15px 28px;
+  border-radius: 999px;
+  background: white;
+  border: 1px solid $border;
+  color: $text;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  box-shadow: $shadow-sm;
+  transition: $transition;
+}
+
+.contactButtons a:hover {
+  background: $primary;
+  color: white;
+  transform: translateY(-3px);
+}
+
+.contactButtons a:hover svg {
+  color: white;
+}
+
+/* ===========================================
+   RESPONSIVE
+=========================================== */
+
+@media (max-width: 992px) {
+
+  .heroCard,
+  .aboutCard {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .line {
+    display: none;
+  }
+
+  .menuGrid,
+  .featureGrid,
+  .packageGrid {
+    grid-template-columns: 1fr;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .hero {
+    padding-top: 130px;
+  }
+
+  .hero h1 {
+    font-size: 46px;
+  }
+
+  .about h2,
+  .heading h2,
+  .cta h2,
+  .packageCard h2 {
+    font-size: 34px;
+  }
+
+  .heroCard h2 {
+    font-size: 42px;
+  }
+
+  .aboutCard,
+  .packageCard,
+  .menuCard {
+    padding: 30px;
+  }
+
+}

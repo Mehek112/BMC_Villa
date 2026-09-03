@@ -1,0 +1,126 @@
+@import "../../styles/variables";
+
+.hero {
+
+    padding-top:140px;
+    padding-bottom:80px;
+
+    background:linear-gradient(
+        180deg,
+        #EEF5FF,
+        #FFFFFF
+    );
+
+    text-align:center;
+
+}
+
+.hero h1{
+
+    font-family:"Playfair Display",serif;
+
+    font-size:64px;
+
+    margin-bottom:18px;
+
+    color:$text;
+
+}
+
+.hero p{
+
+    font-size:18px;
+
+    color:$text-light;
+
+    max-width:650px;
+
+    margin:auto;
+
+    line-height:1.8;
+
+}
+
+.gallery{
+
+    padding:90px 0;
+
+    background:white;
+
+}
+
+.grid{
+
+    columns:4 280px;
+
+    column-gap:22px;
+
+}
+
+.card{
+
+    overflow:hidden;
+
+    border-radius:22px;
+
+    margin-bottom:22px;
+
+    break-inside:avoid;
+
+    cursor:pointer;
+
+    box-shadow:$shadow-sm;
+
+}
+
+.card img{
+
+    width:100%;
+
+    display:block;
+
+    transition:.45s ease;
+
+}
+
+.card:hover img{
+
+    transform:scale(1.08);
+
+}
+
+@media(max-width:992px){
+
+.grid{
+
+columns:3 250px;
+
+}
+
+}
+
+@media(max-width:768px){
+
+.hero h1{
+
+font-size:48px;
+
+}
+
+.grid{
+
+columns:2 220px;
+
+}
+
+}
+
+@media(max-width:550px){
+
+.grid{
+
+columns:1;
+
+}
+
+}
