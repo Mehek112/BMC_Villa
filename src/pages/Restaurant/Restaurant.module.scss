@@ -1,402 +1,1033 @@
-@import "../../styles/variables";
+@use "../../styles/variables" as *;
 
-/* ===========================================
+
+/* =========================================================
    HERO
-=========================================== */
+========================================================= */
 
 .hero {
-  padding: 150px 0 100px;
-  text-align: center;
-  background: linear-gradient(180deg, #EEF5FF 0%, #FFFFFF 100%);
+  position: relative;
+  min-height: 720px;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background: #0f172a;
 }
 
-.tag {
+.heroImage {
+  position: absolute;
+  inset: 0;
+}
+
+.heroImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.heroOverlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      90deg,
+      rgba(10, 20, 35, 0.82) 0%,
+      rgba(10, 20, 35, 0.58) 42%,
+      rgba(10, 20, 35, 0.18) 100%
+    );
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  padding-top: 60px;
+  padding-bottom: 100px;
+}
+
+.heroTag {
   display: inline-block;
-  padding: 8px 18px;
-  border-radius: 999px;
-  background: rgba(47, 107, 255, .08);
-  color: $primary;
-  font-size: 13px;
-  font-weight: 600;
-  letter-spacing: 2px;
-  text-transform: uppercase;
   margin-bottom: 22px;
+  color: #dbeafe;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 3px;
+  text-transform: uppercase;
 }
 
 .hero h1 {
+  max-width: 780px;
+  margin-bottom: 24px;
+  color: white;
   font-family: "Playfair Display", serif;
-  font-size: 64px;
-  margin-bottom: 20px;
-  color: $text;
+  font-size: clamp(3.5rem, 7vw, 6.2rem);
+  line-height: 1.05;
+  font-weight: 600;
 }
 
-.hero p {
-  max-width: 760px;
-  margin: auto;
-  color: $text-light;
-  line-height: 1.9;
-  font-size: 17px;
+.heroContent > p {
+  max-width: 620px;
+  margin-bottom: 35px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 18px;
+  line-height: 1.8;
 }
 
-.heroCard {
-  margin: 60px auto 0;
-  max-width: 850px;
-  background: white;
-  border-radius: 24px;
-  padding: 35px;
-  display: flex;
-  justify-content: space-between;
+.heroButton {
+  display: inline-flex;
   align-items: center;
-  box-shadow: $shadow-md;
-  border: 1px solid $border;
+  justify-content: center;
+  padding: 15px 28px;
+  border-radius: 999px;
+  background: white;
+  color: $text;
+  font-weight: 600;
+  transition: $transition;
 }
 
-.heroCard h2 {
+.heroButton:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+}
+
+
+/* =========================================================
+   PRICE CARD
+========================================================= */
+
+.priceCard {
+  position: absolute;
+  z-index: 3;
+  right: max(4%, calc((100vw - 1320px) / 2));
+  bottom: 55px;
+
+  width: min(560px, 90%);
+  padding: 25px 30px;
+
+  display: flex;
+  align-items: center;
+  gap: 30px;
+
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(15px);
+
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 20px;
+
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.18);
+}
+
+.price {
+  min-width: 150px;
+}
+
+.price span {
+  display: block;
+  margin-bottom: 5px;
+  color: $text-light;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.price strong {
+  display: block;
   color: $primary;
-  font-size: 54px;
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
 }
 
-.heroCard span {
+.price small {
   color: $text-light;
 }
 
-.line {
+.priceDivider {
   width: 1px;
-  height: 80px;
+  height: 65px;
   background: $border;
 }
 
-.includes {
+.packageItems {
+  flex: 1;
   display: grid;
-  grid-template-columns: repeat(2, auto);
-  gap: 16px 30px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
 }
 
-.includes span {
-  background: #EEF5FF;
+.packageItems span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: $text;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.packageItems svg {
   color: $primary;
-  padding: 10px 18px;
-  border-radius: 999px;
+}
+
+
+/* =========================================================
+   INTRO
+========================================================= */
+
+.intro {
+  padding: 120px 0;
+  background: white;
+}
+
+.introGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+}
+
+.introImage {
+  position: relative;
+  height: 540px;
+}
+
+.introImage img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 26px;
+  box-shadow: 0 25px 60px rgba(15, 23, 42, 0.14);
+}
+
+.imageBadge {
+  position: absolute;
+  right: -25px;
+  bottom: 30px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 15px 20px;
+
+  background: white;
+  color: $text;
+
+  border-radius: 12px;
+  box-shadow: $shadow-md;
+
   font-weight: 600;
 }
 
-/* ===========================================
-   ABOUT
-=========================================== */
-
-.about {
-  padding: 90px 0;
-}
-
-.aboutCard {
-  display: flex;
-  gap: 35px;
-  align-items: flex-start;
-  background: white;
-  border-radius: 24px;
-  padding: 45px;
-  border: 1px solid $border;
-  box-shadow: $shadow-sm;
-}
-
-.iconBox {
-  width: 90px;
-  height: 90px;
-  border-radius: 50%;
-  background: #EEF5FF;
+.imageBadge svg {
   color: $primary;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.about h2 {
-  font-family: "Playfair Display", serif;
-  font-size: 42px;
-  margin-bottom: 18px;
-}
-
-.about p {
-  color: $text-light;
-  line-height: 1.9;
-  margin-bottom: 15px;
-}
-
-/* ===========================================
-   PACKAGE
-=========================================== */
-
-.package {
-  padding: 0 0 100px;
-}
-
-.packageCard {
-  background: linear-gradient(135deg, #2F6BFF, #1D4ED8);
-  color: white;
-  border-radius: 28px;
-  padding: 55px;
-  text-align: center;
-}
-
-.smallTitle {
-  letter-spacing: 2px;
+.sectionTag {
+  display: inline-block;
+  margin-bottom: 16px;
+  color: $primary;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2.5px;
   text-transform: uppercase;
-  opacity: .8;
 }
 
-.packageCard h2 {
-  margin: 15px 0 35px;
+.introContent h2 {
+  margin-bottom: 24px;
+  color: $text;
   font-family: "Playfair Display", serif;
-  font-size: 42px;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1.15;
 }
 
-.packageGrid {
-  display: grid;
-  grid-template-columns: repeat(2,1fr);
-  gap: 22px;
+.introContent p {
+  margin-bottom: 17px;
+  color: $text-light;
+  font-size: 16px;
+  line-height: 1.9;
 }
 
-.packageGrid div {
-  background: rgba(255,255,255,.12);
-  border-radius: 16px;
-  padding: 18px;
+.introHighlights {
+  display: flex;
+  gap: 30px;
+  margin-top: 30px;
+  padding-top: 25px;
+  border-top: 1px solid $border;
+}
+
+.introHighlights div {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 12px;
+  gap: 10px;
+  color: $text;
+  font-weight: 600;
 }
 
-.packageGrid svg {
-  color: #FFD166;
+.introHighlights svg {
+  color: $primary;
 }
 
-/* ===========================================
+
+/* =========================================================
    MENU
-=========================================== */
+========================================================= */
+
+// .menu {
+//   padding: 120px 0;
+//   background: $bg-soft;
+// }
+// .menuHeading {
+//   max-width: 1000px;
+//   margin: 0 auto 65px;
+//   text-align: center;
+// }
+
+// .menuHeading h2 {
+//   margin: 0 0 12px;
+//   color: $text;
+//   font-family: "Playfair Display", serif;
+//   font-size: clamp(2.5rem, 4vw, 4rem);
+//   line-height: 1.15;
+// }
+
+// .menuHeading p {
+//   margin: 0 auto;
+//   color: $text-light;
+//   font-size: 17px;
+//   line-height: 1.8;
+  
+// }
+/* =========================
+   MENU SECTION
+========================= */
+/* =========================
+   MENU SECTION
+========================= */
+/* =========================
+   MENU SECTION
+========================= */
 
 .menu {
+  padding: 110px 0;
   background: $bg-soft;
-  padding: 100px 0;
 }
 
-.heading {
+.menuHeading {
+  max-width: 760px;
+  margin: 0 auto 55px;
   text-align: center;
-  margin-bottom: 60px;
 }
 
-.heading p {
-  color: $primary;
-  font-weight: 600;
-  letter-spacing: 2px;
-  margin-bottom: 12px;
-}
-
-.heading h2 {
+.menuHeading h2 {
+  margin: 0 0 14px;
+  color: $text;
   font-family: "Playfair Display", serif;
-  font-size: 46px;
+  font-size: clamp(2.6rem, 4vw, 4rem);
+  line-height: 1.1;
 }
 
-.menuGrid {
+.menuHeading p {
+  margin: 0 auto;
+  color: $text-light;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+
+/* =========================
+   MENU GRID
+========================= */
+
+.menuLayout {
   display: grid;
-  grid-template-columns: repeat(2,1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 30px;
 }
 
-.menuCard {
-  background: white;
-  border-radius: 22px;
-  padding: 35px;
-  box-shadow: $shadow-sm;
-  border: 1px solid $border;
-  transition: $transition;
+
+/* =========================
+   MENU CARD
+========================= */
+
+.menuItem {
+  overflow: hidden;
+
+  display: grid;
+  grid-template-columns: 55% 45%;
+
+  min-height: 390px;
+
+  background: #ffffff;
+
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  border-radius: 24px;
+
+  box-shadow: 0 12px 35px rgba(15, 23, 42, 0.07);
+
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease;
 }
 
-.menuCard:hover {
-  transform: translateY(-8px);
-  box-shadow: $shadow-md;
+.menuItem:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 22px 50px rgba(15, 23, 42, 0.13);
 }
+
+
+/* =========================
+   MENU IMAGE
+========================= */
+
+.menuImage {
+  position: relative;
+
+  width: 100%;
+  height: 100%;
+  min-height: 390px;
+
+  overflow: hidden;
+
+  align-self: stretch;
+}
+
+.menuImage img {
+  width: 100%;
+  height: 100%;
+
+  display: block;
+
+  object-fit: cover;
+
+  transition: transform 0.6s ease;
+}
+
+.menuItem:hover .menuImage img {
+  transform: scale(1.06);
+}
+
+
+/* =========================
+   IMAGE OVERLAY
+========================= */
+
+.menuImage::after {
+  content: "";
+
+  position: absolute;
+  inset: 0;
+
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.4),
+    rgba(0, 0, 0, 0.03) 65%
+  );
+
+  pointer-events: none;
+}
+
+
+/* =========================
+   FLOATING ICON
+========================= */
 
 .menuIcon {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: #EEF5FF;
-  color: $primary;
+  position: absolute;
+
+  left: 20px;
+  bottom: 20px;
+
+  z-index: 2;
+
+  width: 52px;
+  height: 52px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-bottom: 25px;
-}
 
-.menuCard h3 {
-  font-size: 28px;
-  margin-bottom: 20px;
-}
+  border-radius: 50%;
 
-.menuCard ul {
-  list-style: none;
-}
-
-.menuCard li {
-  color: $text-light;
-  margin-bottom: 14px;
-  padding-left: 22px;
-  position: relative;
-}
-
-.menuCard li::before {
-  content: "•";
+  background: #ffffff;
   color: $primary;
+
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================
+   MENU CONTENT
+========================= */
+
+.menuContent {
+  padding: 27px 25px;
+
+  display: flex;
+  flex-direction: column;
+
+  justify-content: flex-start;
+}
+
+
+/* =========================
+   MENU TITLE
+========================= */
+
+.menuTitle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 10px;
+
+  margin-bottom: 20px;
+  padding-bottom: 16px;
+
+  border-bottom: 1px solid rgba(15, 23, 42, 0.09);
+}
+
+.menuTitle > div {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+}
+
+.menuTitle > div > span {
+  color: $primary;
+
+  font-size: 13px;
+  font-weight: 800;
+
+  letter-spacing: 1px;
+}
+
+.menuTitle h3 {
+  margin: 0;
+
+  color: $text;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 28px;
+  font-weight: 600;
+
+  line-height: 1.15;
+}
+
+
+/* =========================
+   TIME BADGE
+========================= */
+
+.menuTime {
+  flex-shrink: 0;
+
+  padding: 7px 12px;
+
+  border-radius: 999px;
+
+  background: #eef5ff;
+  color: $primary;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  white-space: nowrap;
+}
+
+
+/* =========================
+   FOOD ITEMS
+========================= */
+
+.menuContent ul {
+  margin: 0;
+  padding: 0;
+
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 14px;
+}
+
+.menuContent li {
+  position: relative;
+
+  padding-left: 18px;
+
+  color: $text;
+ font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-size: 25px;
+  font-weight: 500;
+
+  line-height: 1.45;
+}
+
+.menuContent li::before {
+  content: "";
+
   position: absolute;
+
   left: 0;
+  top: 9px;
+
+  width: 6px;
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: $primary;
 }
 
-/* ===========================================
-   FEATURES
-=========================================== */
 
-.features {
-  padding: 100px 0;
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 1100px) {
+
+  .menuLayout {
+    gap: 24px;
+  }
+
+  .menuItem {
+    grid-template-columns: 52% 48%;
+    min-height: 380px;
+  }
+
+  .menuImage {
+    min-height: 380px;
+  }
+
+  .menuContent {
+    padding: 25px 20px;
+  }
+
+  .menuTitle h3 {
+    font-size: 25px;
+  }
+
+  .menuContent li {
+    font-size: 15px;
+  }
 }
 
-.featureGrid {
+
+/* =========================
+   SINGLE COLUMN TABLET
+========================= */
+
+@media (max-width: 900px) {
+
+  .menuLayout {
+    grid-template-columns: 1fr;
+    gap: 26px;
+  }
+
+  .menuItem {
+    grid-template-columns: 52% 48%;
+    min-height: 380px;
+  }
+
+  .menuImage {
+    min-height: 380px;
+  }
+
+  .menuContent {
+    padding: 28px 25px;
+  }
+
+  .menuTitle h3 {
+    font-size: 29px;
+  }
+
+  .menuContent li {
+    font-size: 16px;
+  }
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 650px) {
+
+  .menu {
+    padding: 80px 0;
+  }
+
+  .menuHeading {
+    margin-bottom: 40px;
+  }
+
+  .menuHeading h2 {
+    font-size: 36px;
+  }
+
+  .menuHeading p {
+    font-size: 15px;
+  }
+
+  .menuLayout {
+    grid-template-columns: 1fr;
+    gap: 22px;
+  }
+
+  .menuItem {
+    display: block;
+
+    min-height: auto;
+
+    border-radius: 20px;
+  }
+
+  .menuImage {
+    height: 240px;
+    min-height: 240px;
+  }
+
+  .menuIcon {
+    left: 18px;
+    bottom: 18px;
+
+    width: 48px;
+    height: 48px;
+  }
+
+  .menuContent {
+    padding: 24px 22px 28px;
+  }
+
+  .menuTitle {
+    margin-bottom: 18px;
+    padding-bottom: 16px;
+  }
+
+  .menuTitle h3 {
+    font-size: 27px;
+  }
+
+  .menuTime {
+    padding: 6px 10px;
+    font-size: 10px;
+  }
+
+  .menuContent ul {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+
+    column-gap: 20px;
+    row-gap: 13px;
+  }
+
+  .menuContent li {
+    font-size: 15px;
+  }
+}
+
+
+/* =========================
+   SMALL MOBILE
+========================= */
+
+@media (max-width: 430px) {
+
+  .menuTitle {
+    align-items: flex-start;
+  }
+
+  .menuTitle h3 {
+    font-size: 24px;
+  }
+
+  .menuContent {
+    padding: 22px 20px 25px;
+  }
+
+  .menuContent ul {
+    grid-template-columns: 1fr;
+    gap: 11px;
+  }
+
+  .menuContent li {
+    font-size: 15px;
+  }
+}
+/* =========================================================
+   EXPERIENCE
+========================================================= */
+
+.experience {
+  padding: 120px 0;
+  background: white;
+}
+
+.experienceHeading {
+  margin-bottom: 55px;
+}
+
+.experienceHeading h2 {
+  color: $text;
+  font-family: "Playfair Display", serif;
+  font-size: clamp(2.5rem, 4vw, 4rem);
+  line-height: 1.15;
+}
+
+.experienceGrid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 25px;
 }
 
-.featureCard {
-  background: white;
-  border-radius: 20px;
-  text-align: center;
-  padding: 35px 28px;
-  box-shadow: $shadow-sm;
+.experienceCard {
+  padding: 35px;
   border: 1px solid $border;
+  border-radius: 18px;
+  background: $bg-soft;
   transition: $transition;
 }
 
-.featureCard:hover {
-  transform: translateY(-8px);
-  box-shadow: $shadow-md;
+.experienceCard:hover {
+  transform: translateY(-5px);
+  box-shadow: $shadow-sm;
 }
 
-.featureCard svg {
+.experienceCard svg {
+  margin-bottom: 22px;
   color: $primary;
-  margin-bottom: 18px;
 }
 
-.featureCard h3 {
-  margin-bottom: 14px;
+.experienceCard h3 {
+  margin-bottom: 12px;
+  color: $text;
+  font-size: 20px;
 }
 
-.featureCard p {
+.experienceCard p {
   color: $text-light;
   line-height: 1.8;
+  font-size: 15px;
 }
 
-/* ===========================================
+
+/* =========================================================
    CTA
-=========================================== */
+========================================================= */
 
 .cta {
-  padding: 110px 0;
+  position: relative;
+  padding: 120px 0;
   text-align: center;
-  background: linear-gradient(180deg, #FFFFFF 0%, #F8FAFC 100%);
+  background: linear-gradient(
+    135deg,
+    #eef5ff 0%,
+    #ffffff 100%
+  );
 }
 
 .cta h2 {
+  margin-bottom: 22px;
+  color: $text;
   font-family: "Playfair Display", serif;
-  font-size: 50px;
-  margin-bottom: 18px;
+  font-size: clamp(2.8rem, 5vw, 4.8rem);
+  line-height: 1.1;
 }
 
 .cta p {
-  max-width: 700px;
-  margin: auto;
+  max-width: 680px;
+  margin: 0 auto 40px;
   color: $text-light;
+  font-size: 17px;
   line-height: 1.8;
-  margin-bottom: 40px;
 }
 
 .contactButtons {
   display: flex;
   justify-content: center;
-  gap: 18px;
   flex-wrap: wrap;
+  gap: 14px;
 }
 
 .contactButtons a {
-  padding: 15px 28px;
-  border-radius: 999px;
-  background: white;
-  border: 1px solid $border;
-  color: $text;
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 9px;
+
+  padding: 14px 24px;
+
+  border: 1px solid $border;
+  border-radius: 999px;
+
+  background: white;
+  color: $text;
+
   box-shadow: $shadow-sm;
+
+  font-weight: 600;
+
   transition: $transition;
 }
 
 .contactButtons a:hover {
-  background: $primary;
-  color: white;
   transform: translateY(-3px);
-}
-
-.contactButtons a:hover svg {
+  background: $primary;
+  border-color: $primary;
   color: white;
+  box-shadow: $shadow-md;
 }
 
-/* ===========================================
+
+/* =========================================================
    RESPONSIVE
-=========================================== */
+========================================================= */
 
-@media (max-width: 992px) {
+@media (max-width: 1100px) {
 
-  .heroCard,
-  .aboutCard {
-    flex-direction: column;
-    text-align: center;
+  .priceCard {
+    right: 5%;
+    left: 5%;
+    width: auto;
   }
 
-  .line {
-    display: none;
+  .introGrid {
+    gap: 50px;
   }
 
-  .menuGrid,
-  .featureGrid,
-  .packageGrid {
+  .menuItem {
+    grid-template-columns: 180px 1fr;
+  }
+
+}
+
+
+@media (max-width: 900px) {
+
+  .hero {
+    min-height: 720px;
+  }
+
+  .heroContent {
+    padding-bottom: 180px;
+  }
+
+  .hero h1 {
+    font-size: clamp(3rem, 8vw, 5rem);
+  }
+
+  .introGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .introImage {
+    height: 500px;
+  }
+
+  .introContent {
+    max-width: 700px;
+  }
+
+  .menuLayout {
+    grid-template-columns: 1fr;
+  }
+
+  .experienceGrid {
     grid-template-columns: 1fr;
   }
 
 }
 
-@media (max-width: 768px) {
+
+@media (max-width: 650px) {
 
   .hero {
-    padding-top: 130px;
+    min-height: 680px;
+  }
+
+  .heroContent {
+    padding-top: 30px;
+    padding-bottom: 220px;
   }
 
   .hero h1 {
-    font-size: 46px;
-  }
-
-  .about h2,
-  .heading h2,
-  .cta h2,
-  .packageCard h2 {
-    font-size: 34px;
-  }
-
-  .heroCard h2 {
     font-size: 42px;
   }
 
-  .aboutCard,
-  .packageCard,
-  .menuCard {
-    padding: 30px;
+  .heroContent > p {
+    font-size: 16px;
+  }
+
+  .priceCard {
+    bottom: 25px;
+    padding: 22px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+
+  .priceDivider {
+    width: 100%;
+    height: 1px;
+  }
+
+  .packageItems {
+    width: 100%;
+  }
+
+  .intro,
+  .menu,
+  .experience,
+  .cta {
+    padding: 80px 0;
+  }
+
+  .introImage {
+    height: 380px;
+  }
+
+  .imageBadge {
+    right: 15px;
+    bottom: 15px;
+  }
+
+  .introHighlights {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .menuItem {
+    grid-template-columns: 1fr;
+  }
+
+  .menuImage {
+    height: 240px;
+    min-height: 240px;
+  }
+
+  .menuContent {
+    padding: 25px;
+  }
+
+  .menuTitle {
+    flex-direction: column;
+  }
+
+  .packageItems {
+    gap: 10px;
+  }
+
+  .packageItems span {
+    font-size: 13px;
+  }
+
+  .contactButtons {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .contactButtons a {
+    justify-content: center;
   }
 
 }

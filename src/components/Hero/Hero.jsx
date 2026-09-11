@@ -4,13 +4,13 @@ import { motion } from "framer-motion";
 import { BedDouble, Waves, Home, MapPinned } from "lucide-react";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, EffectFade, Navigation } from "swiper/modules";
+import { Autoplay, EffectFade } from "swiper/modules";
 
 import { hero1, hero2, hero3 } from "../../assets";
 
 import "swiper/css";
 import "swiper/css/effect-fade";
-import "swiper/css/navigation";
+//import "swiper/css/navigation";
 
 export default function Hero() {
 
@@ -24,18 +24,16 @@ export default function Hero() {
 
         <section className={styles.hero}>
 
-            <Swiper
-                modules={[Autoplay, EffectFade, Navigation]}
-                effect="fade"
-                autoplay={{
-                    delay: 5000,
-                    disableOnInteraction: false,
-                }}
-                loop={true}
-                navigation
+            <Swiper 
+                modules={[Autoplay, EffectFade]} 
+                effect="fade" 
+                autoplay={{ 
+                    delay: 2500, 
+                    disableOnInteraction: false, 
+                }} 
+                loop={true} 
                 className={styles.swiper}
             >
-
                 {images.map((img, index) => (
 
                     <SwiperSlide key={index}>

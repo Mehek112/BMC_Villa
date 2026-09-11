@@ -17,6 +17,11 @@ import gallery10 from "./images/gallery10.jpg";
 import gallery11 from "./images/gallery11.jpg";
 import gallery12 from "./images/gallery12.jpg";
 import gallery13 from "./images/gallery13.jpg";
+import gallery14 from "./images/gallery14.jpg";
+import gallery15 from "./images/gallery15.jpg";
+import gallery16 from "./images/gallery16.jpg";
+import gallery17 from "./images/gallery17.jpg";
+import gallery18 from "./images/gallery18.jpg";
 
 import bedroom1 from "./images/rooms/bedroom-1.jpg";
 import bedroom2 from "./images/rooms/bedroom-2.jpg";
@@ -41,6 +46,11 @@ export {
     gallery11,
     gallery12,
     gallery13,
+    gallery14,
+    gallery15,
+    gallery16,
+    gallery17,
+    gallery18,
 
    bedroom1,
    bedroom2,

@@ -2,6 +2,7 @@ import React from "react";
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import styles from "./Contact.module.scss";
+import { Link } from "react-router-dom";
 
 import {
   Phone,
@@ -25,7 +26,7 @@ export default function Contact() {
       <section className={styles.hero}>
         <div className="container">
 
-          <p className={styles.tag}>CONTACT US</p>
+          
 
           <h1>Let's Plan Your Perfect Getaway</h1>
 
@@ -70,8 +71,8 @@ export default function Contact() {
             <div className={styles.card}>
               <MapPin />
               <h3>Location</h3>
-              <p>Lake View Villa</p>
-              <span>Lonavala, Maharashtra</span>
+              <p>Samrajya Villa</p>
+              <span>Dangurle,Maharashtra</span>
             </div>
 
           </div>
@@ -247,7 +248,7 @@ export default function Contact() {
 
           <div className={styles.heading}>
 
-            <p>LOCATION</p>
+         
 
             <h2>Find Us Easily</h2>
 
@@ -283,11 +284,11 @@ export default function Contact() {
 
           </p>
 
+         <Link to="/booking">
           <button>
-
             Book Your Stay
-
           </button>
+        </Link>
 
         </div>
 
