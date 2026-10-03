@@ -1,0 +1,234 @@
+.confirmationPage {
+  min-height: calc(100vh - 160px);
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #f7f9fb;
+}
+
+.confirmationCard {
+  width: 100%;
+  max-width: 760px;
+  background: #ffffff;
+  padding: 55px 60px;
+  text-align: center;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+.successIcon {
+  width: 90px;
+  height: 90px;
+  margin: 0 auto 25px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f6ef;
+  color: #238653;
+}
+
+.eyebrow {
+  margin: 0 0 12px;
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #238653;
+}
+
+.confirmationCard h1 {
+  margin: 0;
+  font-family: "Playfair Display", serif;
+  font-size: 42px;
+  line-height: 1.2;
+  color: #1f2933;
+}
+
+.intro {
+  max-width: 570px;
+  margin: 18px auto 30px;
+  color: #68737d;
+  line-height: 1.7;
+  font-size: 16px;
+}
+
+.referenceBox {
+  margin: 0 auto 35px;
+  padding: 18px 25px;
+  max-width: 380px;
+  border: 1px dashed #c8d5df;
+  border-radius: 12px;
+  background: #f8fbfd;
+}
+
+.referenceBox span {
+  display: block;
+  margin-bottom: 6px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
+  color: #7b8791;
+}
+
+.referenceBox strong {
+  font-size: 22px;
+  letter-spacing: 1px;
+  color: #1f2933;
+}
+
+.details {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  text-align: left;
+}
+
+.detailItem {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+  border-radius: 12px;
+  background: #f7f9fb;
+}
+
+.detailItem svg {
+  flex-shrink: 0;
+  color: #238653;
+}
+
+.detailIcon {
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #238653;
+  font-weight: 700;
+}
+
+.detailItem span {
+  display: block;
+  margin-bottom: 4px;
+  font-size: 12px;
+  color: #7b8791;
+}
+
+.detailItem strong {
+  display: block;
+  font-size: 15px;
+  color: #25313b;
+}
+
+.contactInfo {
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 12px;
+  background: #f8fbfd;
+}
+
+.contactInfo h3 {
+  margin: 0 0 7px;
+  font-size: 16px;
+  color: #25313b;
+}
+
+.contactInfo p {
+  margin: 0;
+  color: #68737d;
+  line-height: 1.6;
+  font-size: 14px;
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: 8px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.primaryButton {
+  background: #238653;
+  color: #ffffff;
+}
+
+.primaryButton:hover {
+  background: #1d7046;
+}
+
+.secondaryButton {
+  border: 1px solid #ccd6de;
+  color: #25313b;
+  background: #ffffff;
+}
+
+.secondaryButton:hover {
+  background: #f4f7f9;
+}
+
+.emptyState {
+  width: 100%;
+  max-width: 600px;
+  padding: 60px 30px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 20px;
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+.emptyState h1 {
+  margin: 0 0 12px;
+  font-family: "Playfair Display", serif;
+  font-size: 36px;
+  color: #1f2933;
+}
+
+.emptyState p {
+  margin: 0 auto 25px;
+  color: #68737d;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .confirmationPage {
+    padding: 45px 15px;
+  }
+
+  .confirmationCard {
+    padding: 40px 20px;
+  }
+
+  .confirmationCard h1 {
+    font-size: 32px;
+  }
+
+  .details {
+    grid-template-columns: 1fr;
+  }
+
+  .actions {
+    flex-direction: column;
+  }
+
+  .primaryButton,
+  .secondaryButton {
+    width: 100%;
+  }
+}

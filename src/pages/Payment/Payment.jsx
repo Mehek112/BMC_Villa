@@ -1,9 +1,20 @@
-import React from "react";
+// import React from "react";
+// import { useLocation, useNavigate } from "react-router-dom";
+// import { ArrowLeft, CheckCircle2, CreditCard } from "lucide-react";
+
+// import Navbar from "../../components/Navbar/Navbar";
+// import Footer from "../../components/Footer/Footer";
+
+// import styles from "./Payment.module.scss";
+// import { supabase } from "../../lib/supabaseClient";
+import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { ArrowLeft, CheckCircle2, CreditCard } from "lucide-react";
 
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+
+import { supabase } from "../../lib/supabaseClient";
 
 import styles from "./Payment.module.scss";
 
@@ -14,6 +25,14 @@ function Payment() {
   const navigate = useNavigate();
 
   const booking = location.state;
+  console.log("BOOKING DATA:", {
+    ...booking,
+    visitDate: booking?.visitDate,
+    endDate: booking?.endDate,
+    stayType: booking?.stayType,
+  });
+  const [isProcessing, setIsProcessing] = useState(false);
+  const [paymentError, setPaymentError] = useState("");
 
 
 
@@ -51,13 +70,132 @@ function Payment() {
 
 
 
-  function handlePayment() {
+  // function handlePayment() {
 
-    alert(
-      "Dummy payment successful. Booking confirmed."
+  //   alert(
+  //     "Dummy payment successful. Booking confirmed."
+  //   );
+
+  // }
+  async function handlePayment() {
+  if (isProcessing) return;
+
+  setPaymentError("");
+
+  // Validate booking data before calling Supabase
+  if (!booking) {
+    setPaymentError(
+      "Booking details are missing. Please return to the booking page."
+    );
+    return;
+  }
+
+  const checkIn = booking.visitDate?.trim();
+
+  const checkOut =
+    booking.stayType === "day"
+      ? booking.visitDate?.trim()
+      : booking.endDate?.trim();
+
+  console.log("PAYMENT DATE CHECK:", {
+    stayType: booking.stayType,
+    checkIn,
+    checkOut,
+    visitDate: booking.visitDate,
+    endDate: booking.endDate,
+  });
+
+  if (!checkIn) {
+    setPaymentError(
+      "Check-in date is missing. Please return to the booking page and select a date."
+    );
+    return;
+  }
+
+  if (!checkOut) {
+    setPaymentError(
+      "Check-out date is missing. Please return to the booking page and select your dates."
+    );
+    return;
+  }
+
+  if (!booking.fullName?.trim()) {
+    setPaymentError(
+      "Guest name is missing. Please return to the booking page."
+    );
+    return;
+  }
+
+  if (!booking.email?.trim()) {
+    setPaymentError(
+      "Email address is missing. Please return to the booking page."
+    );
+    return;
+  }
+
+  if (!booking.phoneNumber?.trim()) {
+    setPaymentError(
+      "Phone number is missing. Please return to the booking page."
+    );
+    return;
+  }
+
+  if (!booking.stayType) {
+    setPaymentError(
+      "Stay type is missing. Please return to the booking page."
+    );
+    return;
+  }
+
+  setIsProcessing(true);
+
+  try {
+    const { data, error } = await supabase.rpc(
+      "create_booking",
+      {
+        p_name: booking.fullName.trim(),
+        p_email: booking.email.trim().toLowerCase(),
+        p_phone: booking.phoneNumber.trim(),
+        p_check_in: checkIn,
+        p_check_out: checkOut,
+        p_guests: Number(booking.guestCount),
+        p_stay_type: booking.stayType,
+        p_amount: Number(booking.totalPrice),
+        p_transaction_id: `DEMO-${Date.now()}`,
+      }
     );
 
+    if (error) {
+      console.error("Booking creation error:", error);
+      throw new Error(
+        error.message || "Unable to create booking."
+      );
+    }
+
+    console.log("BOOKING CREATED:", data);
+
+    if (!data?.success) {
+      throw new Error("Booking could not be completed.");
+    }
+
+    navigate("/booking-confirmation", {
+      state: {
+        ...booking,
+        bookingId: data.booking_id,
+        bookingReference: data.booking_reference,
+      },
+    });
+  } catch (error) {
+    console.error("Payment error:", error);
+
+    setPaymentError(
+      error.message ||
+        "Something went wrong while confirming your booking. Please try again."
+    );
+  } finally {
+    setIsProcessing(false);
   }
+}
 
 
 
@@ -186,11 +324,18 @@ function Payment() {
                 className={styles.payButton}
                 type="button"
                 onClick={handlePayment}
+                disabled={isProcessing}
               >
-
-                Pay ₹{booking.totalPrice.toLocaleString("en-IN")}
-
+                {isProcessing
+                  ? "Confirming Booking..."
+                  : `Pay ₹${booking.totalPrice.toLocaleString("en-IN")}`}
               </button>
+
+              {paymentError && (
+                <p className={styles.paymentError} role="alert">
+                  {paymentError}
+                </p>
+              )}
 
 
 
@@ -280,8 +425,8 @@ function Payment() {
 
                     {
                       booking.stayType === "day"
-                      ? "Day Stay"
-                      : "Day + Night Stay"
+                        ? "Day Stay"
+                        : "Day + Night Stay"
                     }
 
                   </strong>

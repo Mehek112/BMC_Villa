@@ -1,0 +1,465 @@
+.dashboardPage {
+  min-height: 100vh;
+
+  padding: 45px 55px;
+
+  background: #f7f9fb;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 30px;
+
+  margin-bottom: 40px;
+}
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  color: #238653;
+}
+
+.header h1 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 40px;
+
+  color: #1f2933;
+}
+
+.header p {
+  margin: 10px 0 0;
+
+  color: #68737d;
+
+  line-height: 1.6;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+
+  gap: 15px;
+}
+
+.adminEmail {
+  font-size: 13px;
+
+  color: #68737d;
+}
+
+.logoutButton {
+  min-height: 42px;
+
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 8px;
+
+  border: 1px solid #d5dde3;
+  border-radius: 8px;
+
+  background: #ffffff;
+
+  color: #25313b;
+
+  font-family: inherit;
+  font-weight: 600;
+
+  cursor: pointer;
+}
+
+.logoutButton:hover {
+  background: #f1f4f6;
+}
+
+.logoutButton:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.errorMessage {
+  margin-bottom: 25px;
+  padding: 14px 17px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 10px;
+
+  border-radius: 10px;
+
+  background: #fff1f1;
+
+  color: #b42318;
+
+  font-size: 14px;
+}
+
+.errorMessage button {
+  margin-left: auto;
+
+  border: none;
+  background: transparent;
+
+  color: #b42318;
+
+  font-weight: 700;
+
+  cursor: pointer;
+}
+
+.statsGrid {
+  display: grid;
+
+  grid-template-columns: repeat(4, 1fr);
+
+  gap: 18px;
+
+  margin-bottom: 45px;
+}
+
+.statCard {
+  min-height: 115px;
+
+  padding: 22px;
+
+  display: flex;
+  align-items: center;
+
+  gap: 17px;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.04);
+}
+
+.statIcon {
+  width: 48px;
+  height: 48px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  flex-shrink: 0;
+
+  border-radius: 11px;
+
+  background: #e8f6ef;
+
+  color: #238653;
+}
+
+.statCard span {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 13px;
+
+  color: #7b8791;
+}
+
+.statCard strong {
+  display: block;
+
+  font-size: 25px;
+
+  color: #25313b;
+}
+
+.managementSection {
+  margin-bottom: 35px;
+}
+
+.sectionHeader {
+  margin-bottom: 20px;
+}
+
+.sectionEyebrow {
+  display: block;
+
+  margin-bottom: 6px;
+
+  font-size: 11px;
+  font-weight: 700;
+
+  letter-spacing: 1.7px;
+
+  color: #238653;
+}
+
+.sectionHeader h2,
+.statusHeader h2 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 28px;
+
+  color: #1f2933;
+}
+
+// .managementGrid {
+//   display: grid;
+
+//   grid-template-columns: repeat(3, 1fr);
+
+//   gap: 20px;
+// }
+
+// .managementCard {
+//   min-height: 150px;
+
+//   padding: 28px;
+
+//   display: flex;
+//   align-items: flex-start;
+
+//   gap: 17px;
+
+//   text-align: left;
+
+//   border: 1px solid #e4e9ed;
+//   border-radius: 16px;
+
+//   background: #ffffff;
+
+//   color: #238653;
+
+//   font-family: inherit;
+
+//   cursor: pointer;
+
+//   transition:
+//     transform 0.2s ease,
+//     box-shadow 0.2s ease;
+// }
+
+// .managementCard:hover {
+//   transform: translateY(-2px);
+
+//   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+// }
+
+// .managementCard h3 {
+//   margin: 0 0 7px;
+
+//   font-size: 17px;
+
+//   color: #25313b;
+// }
+
+// .managementCard p {
+//   margin: 0;
+
+//   font-size: 13px;
+
+//   line-height: 1.6;
+
+//   color: #7b8791;
+// }
+.managementGrid {
+  display: grid;
+  /* Replaces repeat(3, 1fr) to naturally adapt on wide screens */
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+}
+
+.managementCard {
+  min-height: 120px; /* Reduced fixed height so cards stay compact */
+  padding: 24px;
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  text-align: left;
+  border: 1px solid #e4e9ed;
+  border-radius: 16px;
+  background: #ffffff;
+  color: #238653;
+  font-family: inherit;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Ensure icons inside management cards don't shrink */
+.managementCard > svg,
+.managementCard > i,
+.managementCard > .icon {
+  flex-shrink: 0;
+}
+
+/* Text container inside managementCard */
+.managementCard > div {
+  flex: 1;
+}
+
+.managementCard:hover {
+  transform: translateY(-2px);
+  background: #eaf7f0;
+  border-color: #b9e3cc;
+  box-shadow: 0 10px 30px rgba(35, 134, 83, 0.10);
+}
+.managementCard h3 {
+  margin: 0 0 6px;
+  font-size: 16px;
+  color: #25313b;
+}
+
+.managementCard p {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: #7b8791;
+}
+.pendingBadge {
+  display: inline-block;
+
+  margin-top: 10px;
+
+  padding: 4px 8px;
+
+  border-radius: 20px;
+
+  background: #fff4dc;
+
+  color: #946200;
+
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.statusSection {
+  margin-top: 20px;
+}
+
+.statusCard {
+  padding: 28px;
+
+  border-radius: 14px;
+
+  background: #ffffff;
+
+  box-shadow: 0 7px 25px rgba(0, 0, 0, 0.04);
+}
+
+.statusHeader {
+  margin-bottom: 25px;
+}
+
+.statusGrid {
+  display: grid;
+
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 20px;
+}
+
+.statusGrid div {
+  padding: 18px;
+
+  border-radius: 10px;
+
+  background: #f7f9fb;
+}
+
+.statusGrid span {
+  display: block;
+
+  margin-bottom: 7px;
+
+  font-size: 13px;
+
+  color: #7b8791;
+}
+
+.statusGrid strong {
+  font-size: 24px;
+
+  color: #253b26;
+}
+
+@media (max-width: 1000px) {
+  .dashboardPage {
+    padding: 35px 30px;
+  }
+
+  .statsGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .managementGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboardPage {
+    padding: 25px 18px;
+  }
+
+  .header {
+    flex-direction: column;
+  }
+
+  .header h1 {
+    font-size: 34px;
+  }
+
+  .headerActions {
+    width: 100%;
+
+    justify-content: space-between;
+  }
+
+  .adminEmail {
+    max-width: 55%;
+
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .statsGrid,
+  .managementGrid,
+  .statusGrid {
+    grid-template-columns: 1fr;
+  }
+}
+.backButton {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border: 1px solid #dfe7e1;
+    background: #ffffff;
+    color: #344139;
+    padding: 10px 16px;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+
+    &:hover {
+        background: #eef7f0;
+        border-color: #c6d9ca;
+        color: #234a2d;
+    }
+}

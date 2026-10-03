@@ -1,0 +1,171 @@
+.loginPage {
+  min-height: 100vh;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 30px 20px;
+
+  background: #f7f9fb;
+}
+
+.loginCard {
+  width: 100%;
+  max-width: 450px;
+
+  padding: 45px;
+
+  background: #ffffff;
+
+  border-radius: 18px;
+
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.08);
+}
+
+.iconWrapper {
+  width: 58px;
+  height: 58px;
+
+  margin-bottom: 24px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border-radius: 12px;
+
+  background: #e8f6ef;
+  color: #238653;
+}
+
+.eyebrow {
+  display: block;
+
+  margin-bottom: 10px;
+
+  font-size: 12px;
+  font-weight: 700;
+
+  letter-spacing: 2px;
+
+  color: #238653;
+}
+
+.loginCard h1 {
+  margin: 0;
+
+  font-family: "Playfair Display", serif;
+
+  font-size: 38px;
+
+  color: #1f2933;
+}
+
+.subtitle {
+  margin: 12px 0 30px;
+
+  color: #68737d;
+
+  line-height: 1.6;
+
+  font-size: 14px;
+}
+
+.field {
+  margin-bottom: 20px;
+}
+
+.field label {
+  display: block;
+
+  margin-bottom: 8px;
+
+  font-size: 14px;
+  font-weight: 600;
+
+  color: #25313b;
+}
+
+.field input {
+  width: 100%;
+
+  box-sizing: border-box;
+
+  padding: 13px 14px;
+
+  border: 1px solid #d4dce2;
+
+  border-radius: 8px;
+
+  outline: none;
+
+  font-family: inherit;
+  font-size: 14px;
+
+  transition: border-color 0.2s ease;
+}
+
+.field input:focus {
+  border-color: #238653;
+}
+
+.error {
+  margin: -5px 0 18px;
+
+  padding: 12px;
+
+  border-radius: 8px;
+
+  background: #fff1f1;
+
+  color: #b42318;
+
+  font-size: 13px;
+}
+
+.loginButton {
+  width: 100%;
+
+  min-height: 48px;
+
+  border: none;
+  border-radius: 8px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  gap: 8px;
+
+  background: #238653;
+  color: #ffffff;
+
+  font-family: inherit;
+
+  font-size: 15px;
+  font-weight: 600;
+
+  cursor: pointer;
+
+  transition: background 0.2s ease;
+}
+
+.loginButton:hover {
+  background: #1d7046;
+}
+
+.loginButton:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+@media (max-width: 500px) {
+  .loginCard {
+    padding: 32px 22px;
+  }
+
+  .loginCard h1 {
+    font-size: 32px;
+  }
+}

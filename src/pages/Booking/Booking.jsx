@@ -1,5 +1,8 @@
-import React, { useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
+
+
 import { useNavigate } from "react-router-dom";
+
 import {
   CalendarDays,
   CheckCircle2,
@@ -13,6 +16,9 @@ import {
 
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+
+import { supabase } from "../../lib/supabaseClient";
+
 import styles from "./Booking.module.scss";
 
 function formatDateForInput(date) {
@@ -44,31 +50,64 @@ function Booking() {
   const [endDate, setEndDate] = useState("");
 
   const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
   const [message, setMessage] = useState("");
 
   const [formError, setFormError] = useState("");
 
+  const [availability, setAvailability] = useState([]);
+  const [availabilityLoading, setAvailabilityLoading] = useState(true);
+  const [availabilityError, setAvailabilityError] = useState("");
+
   const today = formatDateForInput(new Date());
 
   /*
-    Dummy unavailable dates for frontend testing.
-
-    Later replace these with dates coming from Supabase/backend.
+    Load availability rules from Supabase.
   */
-  const unavailableDates = useMemo(() => {
-    const baseDate = new Date();
+  useEffect(() => {
+    async function fetchAvailability() {
+      setAvailabilityLoading(true);
+      setAvailabilityError("");
 
-    return [3, 7, 10].map((numberOfDays) => {
-      const unavailableDate = new Date(baseDate);
+      const { data, error } = await supabase
+        .from("availability")
+        .select("date, is_available, note")
+        .order("date", { ascending: true });
 
-      unavailableDate.setDate(
-        baseDate.getDate() + numberOfDays
-      );
+      if (error) {
+        console.error("Availability fetch error:", error);
+        setAvailabilityError(
+          "Unable to load live availability. Please try again."
+        );
+        setAvailability([]);
+      } else {
+        setAvailability(data || []);
+      }
 
-      return formatDateForInput(unavailableDate);
-    });
+      setAvailabilityLoading(false);
+    }
+
+    fetchAvailability();
   }, []);
+
+  /*
+    Only dates explicitly marked unavailable by admin
+    are treated as blocked here.
+
+    Dates with no availability entry remain available.
+  */
+  const unavailableDateMap = useMemo(() => {
+    const map = new Map();
+
+    availability.forEach((item) => {
+      if (!item.is_available) {
+        map.set(item.date, item.note || "This date is unavailable.");
+      }
+    });
+
+    return map;
+  }, [availability]);
 
   const pricePerGuest = stayType === "day" ? 1500 : 2000;
 
@@ -100,20 +139,25 @@ function Booking() {
   }, [pricePerGuest, guestCount]);
 
   /*
-    Check whether any date in the selected range
-    is unavailable.
+    Check whether any selected date is unavailable.
   */
-  const isDateRangeUnavailable = useMemo(() => {
+  const unavailableDatesInRange = useMemo(() => {
     if (!visitDate) {
-      return false;
+      return [];
     }
 
+    const blockedDates = [];
+
     if (stayType === "day") {
-      return unavailableDates.includes(visitDate);
+      if (unavailableDateMap.has(visitDate)) {
+        blockedDates.push(visitDate);
+      }
+
+      return blockedDates;
     }
 
     if (!endDate) {
-      return false;
+      return [];
     }
 
     const start = new Date(`${visitDate}T00:00:00`);
@@ -124,21 +168,34 @@ function Booking() {
     while (current <= end) {
       const currentDate = formatDateForInput(current);
 
-      if (unavailableDates.includes(currentDate)) {
-        return true;
+      if (unavailableDateMap.has(currentDate)) {
+        blockedDates.push(currentDate);
       }
 
       current.setDate(current.getDate() + 1);
     }
 
-    return false;
-  }, [visitDate, endDate, stayType, unavailableDates]);
+    return blockedDates;
+  }, [visitDate, endDate, stayType, unavailableDateMap]);
+
+  const isDateRangeUnavailable =
+    unavailableDatesInRange.length > 0;
+
+  const firstUnavailableDate =
+    unavailableDatesInRange.length > 0
+      ? unavailableDatesInRange[0]
+      : null;
+
+  const unavailableDateNote = firstUnavailableDate
+    ? unavailableDateMap.get(firstUnavailableDate)
+    : "";
 
   const isDateAvailable =
     visitDate &&
     (stayType === "day" || endDate) &&
     !isDateRangeUnavailable &&
-    (stayType === "day" || numberOfNights > 0);
+    (stayType === "day" || numberOfNights > 0) &&
+    !availabilityLoading;
 
   function handleStayTypeChange(type) {
     setStayType(type);
@@ -151,17 +208,9 @@ function Booking() {
     setVisitDate(selectedDate);
     setFormError("");
 
-    /*
-      For day stay, the end date is automatically
-      the same date.
-    */
     if (stayType === "day") {
       setEndDate(selectedDate);
     } else {
-      /*
-        If an existing end date is before the new
-        start date, clear it.
-      */
       if (
         endDate &&
         new Date(`${endDate}T00:00:00`) <=
@@ -179,12 +228,24 @@ function Booking() {
 
   function handleSubmit(event) {
     event.preventDefault();
+
     setFormError("");
 
     const phonePattern = /^[6-9]\d{9}$/;
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (!stayType) {
+      setFormError("Please choose a stay type.");
+      return;
+    }
 
     if (!fullName.trim()) {
       setFormError("Please enter your full name.");
+      return;
+    }
+
+    if (!emailPattern.test(email.trim())) {
+      setFormError("Please enter a valid email address.");
       return;
     }
 
@@ -200,17 +261,11 @@ function Booking() {
       return;
     }
 
-    /*
-      Day + Night requires an end date.
-    */
     if (stayType === "overnight" && !endDate) {
       setFormError("Please select your check-out date.");
       return;
     }
 
-    /*
-      End date must be after start date.
-    */
     if (
       stayType === "overnight" &&
       endDate &&
@@ -223,9 +278,17 @@ function Booking() {
       return;
     }
 
+    if (availabilityLoading) {
+      setFormError(
+        "Availability is still loading. Please wait a moment and try again."
+      );
+      return;
+    }
+
     if (isDateRangeUnavailable) {
       setFormError(
-        "One or more selected dates are already booked. Please choose another date range."
+        unavailableDateNote ||
+          "One or more selected dates are unavailable. Please choose another date range."
       );
       return;
     }
@@ -242,20 +305,16 @@ function Booking() {
     navigate("/payment", {
       state: {
         fullName: fullName.trim(),
+        email: email.trim().toLowerCase(),
         phoneNumber,
-
         visitDate,
         endDate,
-
         guestCount,
         stayType,
-
         pricePerGuest,
         totalPrice,
-
         numberOfDays,
         numberOfNights,
-
         message,
       },
     });
@@ -297,33 +356,51 @@ function Booking() {
                   <span>Villa Reservation</span>
 
                   <h2>Plan Your Stay</h2>
-                    
 
                   <p>
-                    Select your preferred dates and enter your details. You can proceed to payment when the villa is available.
+                    Select your preferred dates and enter your
+                    details. You can proceed to payment when the
+                    villa is available.
                   </p>
                 </div>
 
                 <div className={styles.availabilityNotice}>
-                <CalendarDays size={21} />
+                  <CalendarDays size={21} />
 
-                <div className={styles.availabilityContent}>
-                  <div className={styles.timingRow}>
-                    <strong>Day Stay</strong>
-                    <span>10:00 AM check-in – 6:00 PM check-out</span>
+                  <div className={styles.availabilityContent}>
+                    <div className={styles.timingRow}>
+                      <strong>Day Stay</strong>
+
+                      <span>
+                        10:00 AM check-in – 6:00 PM check-out
+                      </span>
+                    </div>
+
+                    <div className={styles.timingRow}>
+                      <strong>Day + Night Stay</strong>
+
+                      <span>
+                        2:00 PM check-in – 11:00 AM check-out
+                      </span>
+                    </div>
+
+                    <p>
+                      Availability is updated from our booking
+                      system. Select your dates below to check
+                      availability.
+                    </p>
                   </div>
-
-                  <div className={styles.timingRow}>
-                    <strong>Day + Night Stay</strong>
-                    <span>2:00 PM check-in – 11:00 AM check-out</span>
-                  </div>
-
-                  <p>
-                    Some dates may already have confirmed bookings.
-                    Select your dates below to check availability.
-                  </p>
                 </div>
-              </div>
+
+                {availabilityError && (
+                  <div className={styles.unavailableMessage}>
+                    <XCircle size={17} />
+
+                    <span>{availabilityError}</span>
+                  </div>
+                )}
+
+                {/* ================= FORM ================= */}
 
                 <form
                   className={styles.bookingForm}
@@ -352,11 +429,7 @@ function Booking() {
                         <div>
                           <strong>Day Stay</strong>
 
-                          <span>
-                            ₹1,500 per person
-                          </span>
-
-                          
+                          <span>₹1,500 per person</span>
                         </div>
                       </button>
 
@@ -374,15 +447,9 @@ function Booking() {
                         <Moon size={24} />
 
                         <div>
-                          <strong>
-                            Day + Night Stay
-                          </strong>
+                          <strong>Day + Night Stay</strong>
 
-                          <span>
-                            ₹2,000 per person
-                          </span>
-
-                       
+                          <span>₹2,000 per person</span>
                         </div>
                       </button>
                     </div>
@@ -409,6 +476,23 @@ function Booking() {
                     </div>
 
                     <div className={styles.formGroup}>
+                      <label htmlFor="email">
+                        Email Address
+                      </label>
+
+                      <input
+                        id="email"
+                        type="email"
+                        placeholder="Enter your email address"
+                        value={email}
+                        onChange={(event) => {
+                          setEmail(event.target.value);
+                          setFormError("");
+                        }}
+                      />
+                    </div>
+
+                    <div className={styles.formGroup}>
                       <label htmlFor="phoneNumber">
                         Phone Number
                       </label>
@@ -427,6 +511,7 @@ function Booking() {
                               ""
                             )
                           );
+
                           setFormError("");
                         }}
                       />
@@ -518,6 +603,7 @@ function Booking() {
                             setGuestCount(
                               Number(event.target.value)
                             );
+
                             setFormError("");
                           }}
                         />
@@ -549,45 +635,50 @@ function Booking() {
                           <CheckCircle2 size={17} />
                         )}
 
-                        {isDateRangeUnavailable
-                          ? "One or more selected dates are already booked."
-                          : `Available for ${numberOfNights} ${
-                              numberOfNights === 1
-                                ? "night"
-                                : "nights"
-                            } / ${numberOfDays} ${
-                              numberOfDays === 1
-                                ? "day"
-                                : "days"
-                            }.`}
+                        <span>
+                          {isDateRangeUnavailable
+                            ? unavailableDateNote ||
+                              "One or more selected dates are unavailable."
+                            : `Available for ${numberOfNights} ${
+                                numberOfNights === 1
+                                  ? "night"
+                                  : "nights"
+                              } / ${numberOfDays} ${
+                                numberOfDays === 1
+                                  ? "day"
+                                  : "days"
+                              }.`}
+                        </span>
                       </div>
                     )}
 
-                  {visitDate &&
-                    stayType === "day" && (
-                      <div
-                        className={
-                          isDateRangeUnavailable
-                            ? styles.unavailableMessage
-                            : styles.availableMessage
-                        }
-                        role={
-                          isDateRangeUnavailable
-                            ? "alert"
-                            : "status"
-                        }
-                      >
-                        {isDateRangeUnavailable ? (
-                          <XCircle size={17} />
-                        ) : (
-                          <CheckCircle2 size={17} />
-                        )}
+                  {visitDate && stayType === "day" && (
+                    <div
+                      className={
+                        isDateRangeUnavailable
+                          ? styles.unavailableMessage
+                          : styles.availableMessage
+                      }
+                      role={
+                        isDateRangeUnavailable
+                          ? "alert"
+                          : "status"
+                      }
+                    >
+                      {isDateRangeUnavailable ? (
+                        <XCircle size={17} />
+                      ) : (
+                        <CheckCircle2 size={17} />
+                      )}
 
+                      <span>
                         {isDateRangeUnavailable
-                          ? "This date is already booked."
+                          ? unavailableDateNote ||
+                            "This date is unavailable."
                           : "This date is currently available — 1 day stay."}
-                      </div>
-                    )}
+                      </span>
+                    </div>
+                  )}
 
                   {/* ================= MESSAGE ================= */}
 
@@ -625,12 +716,15 @@ function Booking() {
                     className={styles.submitButton}
                     type="submit"
                     disabled={
+                      availabilityLoading ||
                       isDateRangeUnavailable
                     }
                   >
-                    {isDateRangeUnavailable
-                      ? "Selected Date Unavailable"
-                      : "Proceed to Payment"}
+                    {availabilityLoading
+                      ? "Checking Availability..."
+                      : isDateRangeUnavailable
+                        ? "Selected Date Unavailable"
+                        : "Proceed to Payment"}
                   </button>
                 </form>
               </div>
@@ -670,7 +764,6 @@ function Booking() {
                   <div>
                     <span>
                       <IndianRupee size={20} />
-
                       Price Per Guest
                     </span>
 
@@ -687,7 +780,6 @@ function Booking() {
                   <div>
                     <span>
                       <Users size={20} />
-
                       Guests
                     </span>
 
@@ -716,7 +808,6 @@ function Booking() {
                     <div>
                       <span>
                         <CalendarDays size={20} />
-
                         Check-out
                       </span>
 
@@ -731,7 +822,6 @@ function Booking() {
                   <div>
                     <span>
                       <Clock3 size={20} />
-
                       Duration
                     </span>
 
@@ -741,16 +831,16 @@ function Booking() {
                           ? "1 day"
                           : "Not selected"
                         : numberOfNights > 0
-                        ? `${numberOfNights} ${
-                            numberOfNights === 1
-                              ? "night"
-                              : "nights"
-                          } / ${numberOfDays} ${
-                            numberOfDays === 1
-                              ? "day"
-                              : "days"
-                          }`
-                        : "Not selected"}
+                          ? `${numberOfNights} ${
+                              numberOfNights === 1
+                                ? "night"
+                                : "nights"
+                            } / ${numberOfDays} ${
+                              numberOfDays === 1
+                                ? "day"
+                                : "days"
+                            }`
+                          : "Not selected"}
                     </strong>
                   </div>
 
@@ -759,7 +849,6 @@ function Booking() {
                   <div>
                     <span>
                       <Clock3 size={20} />
-
                       Timing
                     </span>
 
@@ -773,25 +862,24 @@ function Booking() {
                   {/* Availability */}
 
                   {visitDate &&
-                    (stayType === "day" ||
-                      endDate) && (
+                    (stayType === "day" || endDate) && (
                       <div>
                         <span>
                           {isDateRangeUnavailable ? (
                             <XCircle size={20} />
                           ) : (
-                            <CheckCircle2
-                              size={20}
-                            />
+                            <CheckCircle2 size={20} />
                           )}
 
                           Availability
                         </span>
 
                         <strong>
-                          {isDateRangeUnavailable
-                            ? "Already Booked"
-                            : "Available"}
+                          {availabilityLoading
+                            ? "Checking..."
+                            : isDateRangeUnavailable
+                              ? "Unavailable"
+                              : "Available"}
                         </strong>
                       </div>
                     )}
