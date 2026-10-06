@@ -581,3 +581,420 @@
         flex-basis: 42px;
     }
 }
+/////
+/* Modal Overlay & Card Container */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.6);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: #ffffff;
+  border-radius: 12px;
+  width: 100%;
+  max-width: 520px;
+  padding: 1.5rem;
+  box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Reference Number Box */
+.referenceBadge {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1.25rem;
+
+  span {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+}
+
+/* Details Grid & Item Boxes */
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+}
+
+.detailItem {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 8px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+
+  span {
+    font-size: 0.8rem;
+    color: #64748b;
+  }
+
+  strong {
+    font-size: 0.95rem;
+    color: #1e293b;
+  }
+}
+
+/* Cancellation Box */
+.cancelSection {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  padding: 1.25rem;
+  margin-top: 1rem;
+
+  h4 {
+    margin: 0 0 0.5rem 0;
+    color: #991b1b;
+    font-size: 1rem;
+  }
+
+  p {
+    margin: 0 0 1rem 0;
+    font-size: 0.875rem;
+    color: #7f1d1d;
+    line-height: 1.4;
+  }
+}
+
+.dangerBtn {
+  width: 100%;
+  background-color: #2563eb; /* Or #dc2626 for red */
+  color: #ffffff;
+  border: none;
+  padding: 0.75rem 1rem;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #1d4ed8;
+  }
+}
+///2
+/* ==========================================================================
+   ADDITIONS & OVERRIDES FOR MYBOOKINGS
+   ========================================================================== */
+
+/* Fix background bleed and center overlay */
+.modalOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(15, 23, 42, 0.65);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  padding: 1rem;
+}
+
+.modalContent {
+  background: #ffffff;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 520px;
+  max-height: 90vh;
+  overflow-y: auto;
+  padding: 1.5rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  position: relative;
+}
+
+/* Modal Header & Close Button */
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f1f5f9;
+
+  h3 {
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #0f172a;
+  }
+}
+
+.closeBtn {
+  background: #f1f5f9;
+  border: none;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #64748b;
+  cursor: pointer;
+  transition: all 0.2s ease;
+
+  &:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+  }
+}
+
+/* Reference & Grid Card Boxes */
+.referenceBadge {
+  background-color: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  padding: 1rem;
+
+  span {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #64748b;
+    display: block;
+    margin-bottom: 0.25rem;
+  }
+
+  h2 {
+    margin: 0;
+    font-size: 1.35rem;
+    font-weight: 800;
+    color: #0f172a;
+    font-family: monospace;
+  }
+}
+
+.detailsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 0.75rem;
+}
+
+.detailItem {
+  background: #f8fafc;
+  border: 1px solid #f1f5f9;
+  border-radius: 10px;
+  padding: 0.75rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+
+  span {
+    font-size: 0.75rem;
+    color: #64748b;
+  }
+
+  strong {
+    font-size: 0.925rem;
+    color: #0f172a;
+    font-weight: 600;
+  }
+}
+
+/* Cancellation Confirmation Step Styling */
+.cancellationConfirmBox {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.25rem;
+
+  h4 {
+    margin: 0;
+    color: #0f172a;
+    font-size: 1.05rem;
+    font-weight: 700;
+  }
+
+  p {
+    margin: 0;
+    color: #475569;
+    font-size: 0.875rem;
+    line-height: 1.4;
+  }
+}
+
+.policySummary {
+  background-color: #f8fafc;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.875rem 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.policyRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.875rem;
+  color: #334155;
+
+  &.refundRow {
+    border-top: 1px dashed #cbd5e1;
+    padding-top: 0.5rem;
+    margin-top: 0.25rem;
+    font-size: 0.95rem;
+    color: #0f172a;
+
+    strong {
+      color: #15803d;
+      font-weight: 700;
+    }
+  }
+}
+
+.noteBox {
+  background-color: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 8px;
+  padding: 0.75rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  color: #1e40af;
+  font-size: 0.8rem;
+  line-height: 1.4;
+
+  svg {
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+}
+
+.reasonField {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+
+  label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #334155;
+  }
+
+  textarea {
+    width: 100%;
+    padding: 0.625rem 0.75rem;
+    border: 1px solid #cbd5e1;
+    border-radius: 6px;
+    font-size: 0.875rem;
+    font-family: inherit;
+    resize: vertical;
+    outline: none;
+
+    &:focus {
+      border-color: #2563eb;
+      box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+    }
+  }
+}
+
+/* Fix light grey text contrast in Cancelled Alert */
+.cancelledAlert {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 10px;
+  padding: 1rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  color: #991b1b;
+
+  strong {
+    display: block;
+    font-size: 0.95rem;
+    color: #991b1b;
+    margin-bottom: 0.25rem;
+  }
+
+  p {
+    margin: 0.125rem 0;
+    font-size: 0.85rem;
+    color: #334155;
+
+    strong {
+      display: inline;
+      color: #0f172a;
+    }
+  }
+
+  .highlightPending {
+    background-color: #fef3c7;
+    color: #92400e;
+    padding: 0.125rem 0.375rem;
+    border-radius: 4px;
+    font-weight: 600;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+  }
+}
+
+/* Modal Actions Layout Fix */
+.modalActions {
+  display: flex;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+
+  button {
+    flex: 1;
+    padding: 0.75rem 1rem;
+    border-radius: 8px;
+    font-weight: 600;
+    font-size: 0.875rem;
+    cursor: pointer;
+  }
+}
+
+.secondaryBtn {
+  background-color: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+
+  &:hover {
+    background-color: #e2e8f0;
+    color: #0f172a;
+  }
+}
+
+.dangerBtn {
+  background-color: #dc2626;
+  color: #ffffff;
+  border: none;
+
+  &:hover {
+    background-color: #b91c1c;
+  }
+}
