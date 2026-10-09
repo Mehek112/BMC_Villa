@@ -1031,3 +1031,153 @@
   }
 
 }
+.menu {
+  padding: 60px 0;
+  background-color: #fafbfc;
+
+  .menuHeading {
+    text-align: center;
+    max-width: 580px;
+    margin: 0 auto 40px;
+
+    .sectionTag {
+      display: inline-block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 1.5px;
+      color: #18794e;
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 32px;
+      color: #1e293b;
+      margin-bottom: 12px;
+    }
+
+    p {
+      color: #64748b;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+  }
+
+  // NARROW & COMPACT CONTAINER
+  .menuLayout {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+    max-width: 980px; // Makes container smaller and centered
+    margin: 0 auto;
+
+    @media (max-width: 868px) {
+      grid-template-columns: 1fr;
+      max-width: 480px;
+    }
+  }
+
+  .menuItem {
+    display: flex;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+    border: 1px solid #f1f5f9;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+  }
+
+  /* IMAGE SIDE */
+  .menuImage {
+    position: relative;
+    width: 42%;
+    min-height: 220px;
+    flex-shrink: 0;
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .menuIcon {
+      position: absolute;
+      bottom: 12px;
+      left: 12px;
+      width: 36px;
+      height: 36px;
+      background: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #18794e;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  /* CONTENT SIDE */
+  .menuContent {
+    flex: 1;
+    padding: 20px 24px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .menuTitle {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 12px;
+    margin-bottom: 14px;
+    border-bottom: 1px dashed #e2e8f0;
+
+    .itemNumber {
+      font-size: 13px;
+      font-weight: 700;
+      color: #18794e;
+    }
+
+    h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #0f172a;
+      margin: 0;
+    }
+  }
+
+  /* MODERN BULLET POINTS */
+  .menuList {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 14px;
+      color: #334155;
+      font-weight: 500;
+
+      svg {
+        color: #18794e;
+        background: #e8f5e9;
+        padding: 2px;
+        border-radius: 50%;
+        flex-shrink: 0;
+      }
+
+      span {
+        line-height: 1.4;
+      }
+    }
+  }
+}
