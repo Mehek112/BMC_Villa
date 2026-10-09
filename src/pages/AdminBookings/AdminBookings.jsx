@@ -13,6 +13,7 @@ import {
     Users,
     X,
     XCircle,
+    Trash2,
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../lib/supabaseClient";
@@ -256,6 +257,36 @@ function AdminBookings() {
             setSelectedStatus("cancelled");
             setCancellationReason("");
 
+            // Notify the customer after cancellation is saved.
+            try {
+                console.log("Starting cancellation email request...");
+                const { data: emailData, error: emailError } =
+                    await supabase.functions.invoke(
+                        "send-cancellation-email",
+                        {
+                            body: {
+                                booking_id: updatedBooking.id,
+                                booking_reference: updatedBooking.booking_reference,
+                            },
+                        }
+                    );
+                console.log("Cancellation email response:", {
+                    emailData,
+                    emailError,
+                });
+
+                if (emailError || !emailData?.success) {
+                    console.error(
+                        "Cancellation email failed:",
+                        emailError || emailData
+                    );
+                } else {
+                    console.log("Cancellation email sent successfully.");
+                }
+            } catch (emailError) {
+                console.error("Cancellation email request failed:", emailError);
+            }
+
         } catch (cancelError) {
             console.error(
                 "Booking cancellation error:",
@@ -413,7 +444,40 @@ function AdminBookings() {
             setIsUpdating(false);
         }
     }
+    async function handleDeleteBooking(booking) {
+        const confirmed = window.confirm(
+            `Are you sure you want to permanently delete booking ${booking.booking_reference}? This action cannot be undone.`
+        );
 
+        if (!confirmed) return;
+
+        try {
+            const { error: deleteError } = await supabase
+                .from("bookings")
+                .delete()
+                .eq("id", booking.id);
+
+            if (deleteError) {
+                throw deleteError;
+            }
+
+            setBookings((currentBookings) =>
+                currentBookings.filter((item) => item.id !== booking.id)
+            );
+
+            if (selectedBooking?.id === booking.id) {
+                setSelectedBooking(null);
+                setSelectedStatus("");
+            }
+        } catch (deleteError) {
+            console.error("Booking deletion error:", deleteError);
+
+            window.alert(
+                deleteError.message ||
+                "Unable to delete this booking. Please try again."
+            );
+        }
+    }
 
 
     return (
@@ -640,26 +704,27 @@ function AdminBookings() {
                                                 </td>
 
                                                 <td>
-                                                    {/* <button
-                                                        type="button"
-                                                        className={styles.viewButton}
-                                                        title="View booking"
-                                                        onClick={() =>
-                                                            openBooking(booking)
-                                                        }
-                                                    >
-                                                        <Eye size={17} />
-                                                    </button> */}
-                                                    <button
-                                                        type="button"
-                                                        className={styles.viewButton}
-                                                        onClick={() =>
-                                                            openBooking(booking)
-                                                        }
-                                                    >
-                                                        <Eye size={16} />
-                                                        View
-                                                    </button>
+                                                    <div className={styles.actionButtons}>
+                                                        <button
+                                                            type="button"
+                                                            className={styles.viewButton}
+                                                            onClick={() => openBooking(booking)}
+                                                            title="View booking"
+                                                        >
+                                                            <Eye size={16} />
+                                                            View
+                                                        </button>
+
+                                                        <button
+                                                            type="button"
+                                                            className={styles.deleteButton}
+                                                            onClick={() => handleDeleteBooking(booking)}
+                                                            title="Delete booking"
+                                                        >
+                                                            <Trash2 size={16} />
+                                                            
+                                                        </button>
+                                                    </div>
                                                 </td>
                                             </tr>
                                         );
@@ -853,9 +918,9 @@ function AdminBookings() {
                                                 Completed
                                             </option>
 
-                                            <option value="cancelled">
+                                            {/* <option value="cancelled">
                                                 Cancelled
-                                            </option>
+                                            </option> */}
                                         </select>
 
                                         <ChevronDown size={16} />

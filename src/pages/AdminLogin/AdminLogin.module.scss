@@ -169,3 +169,262 @@
     font-size: 32px;
   }
 }
+
+
+.forgotPasswordButton,
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color:#4caf50;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4caf50;
+  }
+}
+
+
+.success {
+  margin: 12px 0;
+  color: #18794e;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+.forgotPasswordWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.forgotPasswordButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  width: auto;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  color: #18794e; // Primary green
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4caf50; // Brighter green on hover
+  }
+}
+
+.backButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 16px;
+  padding: 8px;
+  border: none;
+  background: transparent;
+  color: #18794e;
+  font: inherit;
+  font-size: 14px;
+  cursor: pointer;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: #4caf50;
+  }
+}
+
+.success {
+  margin: 12px 0;
+  color: #18794e;
+  font-size: 14px;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+.forgotPasswordWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 6px;
+}
+
+.forgotPasswordButton,
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  width: auto;
+  padding: 4px 0;
+  border: none;
+  background: transparent;
+  color: #18794e !important; // Forces the base green color
+  font: inherit;
+  font-size: 13px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: color 0.2s ease;
+
+  // Handles state colors explicitly
+  &:visited,
+  &:active,
+  &:focus {
+    color: #18794e !important;
+  }
+
+  // Forces brighter green on hover
+  &:hover {
+    color: #4caf50 !important; 
+    text-decoration: underline;
+  }
+}
+
+.backButton {
+  width: 100%;
+  justify-content: center;
+  margin-top: 16px;
+  padding: 8px;
+  font-size: 14px;
+}
+.forgotPasswordWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+.forgotPasswordButton {
+  display: inline-block;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent !important;
+  color: #18794e !important;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: none;
+  -webkit-tap-highlight-color: transparent;
+
+  // Strips out all active/focus/hover state color shifts
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    background: transparent !important;
+    color: #18794e !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: underline; // Keeps it recognizable as a link without changing colors
+  }
+}
+.forgotPasswordWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Base styles for both text buttons */
+.forgotPasswordButton,
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent !important;
+  color: #18794e !important;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Strips all hover/focus/active state backgrounds & color shifts */
+  &:hover,
+  &:focus,
+  &:active,
+  &:visited {
+    background: transparent !important;
+    color: #18794e !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: none !important; /* Set to 'underline' if you prefer link underline on hover */
+  }
+}
+
+/* Component-specific positioning */
+.backButton {
+  width: 100%;
+  margin-top: 16px;
+  padding: 8px 0;
+  font-size: 14px;
+}
+.forgotPasswordWrapper {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 8px;
+}
+
+/* Base styles for both text buttons */
+.forgotPasswordButton,
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 0;
+  border: none;
+  outline: none;
+  background: transparent !important;
+  color: #18794e !important;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  text-decoration: none;
+  box-shadow: none !important;
+  -webkit-tap-highlight-color: transparent;
+
+  /* Underline on hover and focus without changing color or background */
+  &:hover,
+  &:focus {
+    background: transparent !important;
+    color: #18794e !important;
+    outline: none !important;
+    box-shadow: none !important;
+    text-decoration: underline !important;
+  }
+
+  &:active,
+  &:visited {
+    background: transparent !important;
+    color: #18794e !important;
+  }
+}
+
+/* Component-specific positioning */
+.backButton {
+  width: 100%;
+  margin-top: 16px;
+  padding: 8px 0;
+  font-size: 14px;
+}

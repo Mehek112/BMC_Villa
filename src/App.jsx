@@ -71,6 +71,7 @@ import AdminAvailability from "./pages/AdminAvailability/AdminAvailability";
 import AdminCustomers from "./pages/AdminCustomers/AdminCustomers";
 import AdminPayments from "./pages/AdminPayments/AdminPayments";
 import MyBookings from "./pages/MyBookings/MyBookings";
+import AdminResetPassword from "./pages/AdminResetPassword/AdminResetPassword";
 
 
 function App() {
@@ -87,6 +88,10 @@ function App() {
         <Route path="/booking" element={<Booking />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/admin/login" element={<AdminLogin />} />
+        <Route
+          path="/admin/reset-password"
+          element={<AdminResetPassword />}
+        />
 
         <Route
           path="/admin"

@@ -78,124 +78,148 @@ function Payment() {
 
   // }
   async function handlePayment() {
-  if (isProcessing) return;
+    if (isProcessing) return;
 
-  setPaymentError("");
+    setPaymentError("");
 
-  // Validate booking data before calling Supabase
-  if (!booking) {
-    setPaymentError(
-      "Booking details are missing. Please return to the booking page."
-    );
-    return;
-  }
-
-  const checkIn = booking.visitDate?.trim();
-
-  const checkOut =
-    booking.stayType === "day"
-      ? booking.visitDate?.trim()
-      : booking.endDate?.trim();
-
-  console.log("PAYMENT DATE CHECK:", {
-    stayType: booking.stayType,
-    checkIn,
-    checkOut,
-    visitDate: booking.visitDate,
-    endDate: booking.endDate,
-  });
-
-  if (!checkIn) {
-    setPaymentError(
-      "Check-in date is missing. Please return to the booking page and select a date."
-    );
-    return;
-  }
-
-  if (!checkOut) {
-    setPaymentError(
-      "Check-out date is missing. Please return to the booking page and select your dates."
-    );
-    return;
-  }
-
-  if (!booking.fullName?.trim()) {
-    setPaymentError(
-      "Guest name is missing. Please return to the booking page."
-    );
-    return;
-  }
-
-  if (!booking.email?.trim()) {
-    setPaymentError(
-      "Email address is missing. Please return to the booking page."
-    );
-    return;
-  }
-
-  if (!booking.phoneNumber?.trim()) {
-    setPaymentError(
-      "Phone number is missing. Please return to the booking page."
-    );
-    return;
-  }
-
-  if (!booking.stayType) {
-    setPaymentError(
-      "Stay type is missing. Please return to the booking page."
-    );
-    return;
-  }
-
-  setIsProcessing(true);
-
-  try {
-    const { data, error } = await supabase.rpc(
-      "create_booking",
-      {
-        p_name: booking.fullName.trim(),
-        p_email: booking.email.trim().toLowerCase(),
-        p_phone: booking.phoneNumber.trim(),
-        p_check_in: checkIn,
-        p_check_out: checkOut,
-        p_guests: Number(booking.guestCount),
-        p_stay_type: booking.stayType,
-        p_amount: Number(booking.totalPrice),
-        p_transaction_id: `DEMO-${Date.now()}`,
-      }
-    );
-
-    if (error) {
-      console.error("Booking creation error:", error);
-      throw new Error(
-        error.message || "Unable to create booking."
+    // Validate booking data before calling Supabase
+    if (!booking) {
+      setPaymentError(
+        "Booking details are missing. Please return to the booking page."
       );
+      return;
     }
 
-    console.log("BOOKING CREATED:", data);
+    const checkIn = booking.visitDate?.trim();
 
-    if (!data?.success) {
-      throw new Error("Booking could not be completed.");
-    }
+    const checkOut =
+      booking.stayType === "day"
+        ? booking.visitDate?.trim()
+        : booking.endDate?.trim();
 
-    navigate("/booking-confirmation", {
-      state: {
-        ...booking,
-        bookingId: data.booking_id,
-        bookingReference: data.booking_reference,
-      },
+    console.log("PAYMENT DATE CHECK:", {
+      stayType: booking.stayType,
+      checkIn,
+      checkOut,
+      visitDate: booking.visitDate,
+      endDate: booking.endDate,
     });
-  } catch (error) {
-    console.error("Payment error:", error);
 
-    setPaymentError(
-      error.message ||
+    if (!checkIn) {
+      setPaymentError(
+        "Check-in date is missing. Please return to the booking page and select a date."
+      );
+      return;
+    }
+
+    if (!checkOut) {
+      setPaymentError(
+        "Check-out date is missing. Please return to the booking page and select your dates."
+      );
+      return;
+    }
+
+    if (!booking.fullName?.trim()) {
+      setPaymentError(
+        "Guest name is missing. Please return to the booking page."
+      );
+      return;
+    }
+
+    if (!booking.email?.trim()) {
+      setPaymentError(
+        "Email address is missing. Please return to the booking page."
+      );
+      return;
+    }
+
+    if (!booking.phoneNumber?.trim()) {
+      setPaymentError(
+        "Phone number is missing. Please return to the booking page."
+      );
+      return;
+    }
+
+    if (!booking.stayType) {
+      setPaymentError(
+        "Stay type is missing. Please return to the booking page."
+      );
+      return;
+    }
+
+    setIsProcessing(true);
+
+    try {
+      const { data, error } = await supabase.rpc(
+        "create_booking",
+        {
+          p_name: booking.fullName.trim(),
+          p_email: booking.email.trim().toLowerCase(),
+          p_phone: booking.phoneNumber.trim(),
+          p_check_in: checkIn,
+          p_check_out: checkOut,
+          p_guests: Number(booking.guestCount),
+          p_stay_type: booking.stayType,
+          p_amount: Number(booking.totalPrice),
+          p_transaction_id: `DEMO-${Date.now()}`,
+        }
+      );
+
+      if (error) {
+        console.error("Booking creation error:", error);
+        throw new Error(
+          error.message || "Unable to create booking."
+        );
+      }
+
+      console.log("BOOKING CREATED:", data);
+
+
+      if (!data?.success) {
+        throw new Error("Booking could not be completed.");
+      }
+
+      // Send the booking confirmation email.
+      try {
+        const { error: emailError } = await supabase.functions.invoke(
+          "send-booking-confirmation",
+          {
+            body: {
+              booking_id: data.booking_id,
+              booking_reference: data.booking_reference,
+            },
+          }
+        );
+
+        if (emailError) {
+          console.error("Confirmation email error:", emailError);
+        } else {
+          console.log("Confirmation email request completed.");
+        }
+      } catch (emailError) {
+        // Email failure should not undo an already-confirmed booking.
+        console.error("Could not request confirmation email:", emailError);
+      }
+
+      // Continue to the confirmation page.
+      navigate("/booking-confirmation", {
+        state: {
+          ...booking,
+          bookingId: data.booking_id,
+          bookingReference: data.booking_reference,
+        },
+      });
+    } catch (error) {
+      console.error("Payment error:", error);
+
+      setPaymentError(
+        error.message ||
         "Something went wrong while confirming your booking. Please try again."
-    );
-  } finally {
-    setIsProcessing(false);
+      );
+    } finally {
+      setIsProcessing(false);
+    }
   }
-}
 
 
 
