@@ -2,6 +2,7 @@ import React from "react";
 import styles from "./Location.module.scss";
 import { motion } from "framer-motion";
 import { MapPin, Navigation } from "lucide-react";
+import { Link } from "react-router-dom";
 
 export default function Location() {
   return (
@@ -76,9 +77,9 @@ export default function Location() {
                 Get Directions
               </a>
 
-              <button className={styles.secondary}>
-                Book Now
-              </button>
+              <Link to="/booking" className={styles.secondary}>
+  Book Now
+</Link>
 
             </div>
 

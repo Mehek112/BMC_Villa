@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import { CheckCircle2 } from "lucide-react";
 
 import { about } from "../../assets";
+import { Link } from "react-router-dom";
 
 export default function About() {
 
@@ -75,9 +76,9 @@ export default function About() {
 
             </div>
 
-            <button>
+            <Link to="/gallery" className={styles.galleryButton}>
               Explore Gallery
-            </button>
+            </Link>
 
           </div>
 

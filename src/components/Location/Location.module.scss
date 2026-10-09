@@ -110,3 +110,17 @@
     }
 
 }
+.secondary {
+  // Keep your existing button styles here
+
+  &:hover,
+  &:focus,
+  &:active {
+    background: inherit;
+    color: inherit;
+    border-color: inherit;
+    box-shadow: none;
+    transform: none;
+    filter: none;
+  }
+}
