@@ -75,10 +75,11 @@ export default function About() {
               ))}
 
             </div>
-
-            <Link to="/gallery" className={styles.galleryButton}>
-              Explore Gallery
-            </Link>
+            <button>
+              <Link to="/gallery" className={styles.galleryButton}>
+                Explore Gallery
+              </Link>
+            </button>
 
           </div>
 
