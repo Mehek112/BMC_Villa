@@ -1181,128 +1181,73 @@
     }
   }
 }
-.menu {
-  padding: 60px 0;
-  background-color: #fafbfc;
+/* Target ONLY the 4 menu cards container without affecting the section heading */
+.menuLayout {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 28px;
+  max-width: 1150px !important; /* Makes ONLY the 4 cards wider */
+  margin: 0 auto;
 
-  .menuHeading {
-    text-align: center;
-    max-width: 580px;
-    margin: 0 auto 40px;
+  @media (max-width: 992px) {
+    grid-template-columns: 1fr;
+    max-width: 580px !important;
+  }
+}
 
-    .sectionTag {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: 1.5px;
-      color: #18794e;
-      margin-bottom: 8px;
-    }
+/* Individual card sizing */
+.menuItem {
+  display: flex;
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+  border: 1px solid #f1f5f9;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-    h2 {
-      font-size: 32px;
-      color: #1e293b;
-      margin-bottom: 12px;
-    }
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+  }
+}
 
-    p {
-      color: #64748b;
-      font-size: 15px;
-      line-height: 1.6;
-    }
+.menuImage {
+  position: relative;
+  width: 44%;
+  min-height: 250px; /* Gives the card image more height */
+  flex-shrink: 0;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
   }
 
-  // SLIGHTLY LARGER CARD CONTAINER
-  .menuLayout {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 28px;
-    max-width: 1100px; // Expanded width to make cards slightly bigger
-    margin: 0 auto;
-
-    @media (max-width: 992px) {
-      grid-template-columns: 1fr;
-      max-width: 540px;
-    }
-  }
-
-  .menuItem {
-    display: flex;
+  .menuIcon {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    width: 38px;
+    height: 38px;
     background: #ffffff;
-    border-radius: 16px;
-    overflow: hidden;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-    border: 1px solid #f1f5f9;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-    &:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
-    }
-  }
-
-  /* IMAGE SIDE */
-  .menuImage {
-    position: relative;
-    width: 44%;
-    min-height: 240px;
-    flex-shrink: 0;
-
-    img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .menuIcon {
-      position: absolute;
-      bottom: 14px;
-      left: 14px;
-      width: 38px;
-      height: 38px;
-      background: #ffffff;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #18794e;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
-    }
-  }
-
-  /* CONTENT SIDE */
-  .menuContent {
-    flex: 1;
-    padding: 24px 28px;
-    display: flex;
-    flex-direction: column;
-  }
-
-  .menuTitle {
+    border-radius: 50%;
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding-bottom: 12px;
-    margin-bottom: 16px;
-    border-bottom: 1px dashed #e2e8f0;
-
-    .itemNumber {
-      font-size: 14px;
-      font-weight: 700;
-      color: #18794e;
-    }
-
-    h3 {
-      font-size: 20px;
-      font-weight: 700;
-      color: #0f172a;
-      margin: 0;
-    }
+    justify-content: center;
+    color: #18794e;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
   }
+}
 
-  /* CLEARED BULLET POINTS (NO BLUE DOTS) */
-  .menuList {
-    list-style: none !important; // Removes blue bullets completely
+.menuContent {
+  flex: 1;
+  padding: 24px 28px; /* Taller and roomier inside each card */
+  display: flex;
+  flex-direction: column;
+
+  /* Target UL directly inside cards to remove blue bullets and restore clean spacing */
+  ul {
+    list-style: none !important;
     list-style-type: none !important;
     padding: 0 !important;
     margin: 0 !important;
@@ -1311,13 +1256,13 @@
     gap: 12px;
 
     li {
+      list-style-type: none !important;
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 15px;
       color: #334155;
       font-weight: 500;
-      list-style-type: none !important; // Safety reset for target browsers
 
       svg {
         color: #18794e;
@@ -1325,10 +1270,6 @@
         padding: 3px;
         border-radius: 50%;
         flex-shrink: 0;
-      }
-
-      span {
-        line-height: 1.4;
       }
     }
   }
