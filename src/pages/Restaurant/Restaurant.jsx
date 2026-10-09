@@ -173,120 +173,145 @@ export default function Restaurant() {
 
       {/* ================= MENU ================= */}
 
-     {/* ================= MENU ================= */}
-<section className={styles.menu} id="menu">
-  <div className="container">
-    <div className={styles.menuHeading}>
-      <span className={styles.sectionTag}>OUR MENU</span>
-      <h2>Freshly Prepared Every Day</h2>
-      <p>
-        Enjoy a selection of comforting favourites prepared fresh during your stay.
-      </p>
-    </div>
+      <section className={styles.menu} id="menu">
 
-    <div className={styles.menuLayout}>
-      {/* BREAKFAST */}
-      <div className={styles.menuItem}>
-        <div className={styles.menuImage}>
-          <img src={gallery15} alt="Breakfast at Lake View Villa" />
-          <div className={styles.menuIcon}>
-            <Coffee size={20} />
-          </div>
-        </div>
+        <div className="container">
 
-        <div className={styles.menuContent}>
-          <div className={styles.menuTitle}>
-            <span className={styles.itemNumber}>01</span>
-            <h3>Breakfast</h3>
+          <div className={styles.menuHeading}>
+
+            <span className={styles.sectionTag}>
+              OUR MENU
+            </span>
+
+            <h2>
+              Freshly Prepared Every Day
+            </h2>
+
+            <p>
+              Enjoy a selection of comforting favourites prepared fresh during your stay.
+            </p>
+
           </div>
 
-          <ul className={styles.menuList}>
-            <li><Check size={16} /><span>Tea / Coffee</span></li>
-            <li><Check size={16} /><span>Misal Pav</span></li>
-            <li><Check size={16} /><span>Poha</span></li>
-            <li><Check size={16} /><span>Burji Pav</span></li>
-            <li><Check size={16} /><span>Omelette</span></li>
-          </ul>
-        </div>
-      </div>
+          <div className={styles.menuLayout}>
 
-      {/* LUNCH */}
-      <div className={styles.menuItem}>
-        <div className={styles.menuImage}>
-          <img src={gallery16} alt="Lunch at Lake View Villa" />
-          <div className={styles.menuIcon}>
-            <Soup size={20} />
+            {/* DINNER */}
+            <div className={styles.menuItem}>
+              <div className={styles.menuImage}>
+                <img src={gallery15} alt="Breakfast at Lake View Villa" />
+                <div className={styles.menuIcon}>
+                  <Coffee size={22} />
+                </div>
+              </div>
+
+              <div className={styles.menuContent}>
+                <div className={styles.menuTitle}>
+                  <div>
+                    
+                    <h3>Breakfast</h3>
+                  </div>
+
+                  
+                </div>
+
+                <ul>
+                  <li>Tea / Coffee</li>
+                  <li>Misal Pav</li>
+                  <li>Poha</li>
+                  <li>Burji Pav</li>
+                  <li>Omelette</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className={styles.menuItem}>
+              <div className={styles.menuImage}>
+                <img src={gallery16} alt="Lunch at Lake View Villa" />
+                <div className={styles.menuIcon}>
+                  <Soup size={22} />
+                </div>
+              </div>
+
+              <div className={styles.menuContent}>
+                <div className={styles.menuTitle}>
+                  <div>
+                  
+                    <h3>Lunch</h3>
+                  </div>
+
+                 
+                </div>
+
+                <ul>
+                  <li>Veg Subzi</li>
+                  <li>Chicken Sukka</li>
+                  <li>Dal Rice</li>
+                  <li>Bhakri</li>
+                  <li>Papad</li>
+                  <li>Fresh Salad</li>
+                </ul>
+              </div>
+            </div>
+
+            <div className={styles.menuItem}>
+              <div className={styles.menuImage}>
+                <img src={gallery17} alt="Evening refreshments at Lake View Villa" />
+                <div className={styles.menuIcon}>
+                  <Coffee size={22} />
+                </div>
+              </div>
+
+              <div className={styles.menuContent}>
+                <div className={styles.menuTitle}>
+                  <div>
+                   
+                    <h3>Evening Refreshments</h3>
+                  </div>
+
+                  
+                </div>
+
+                <ul>
+                  <li>Tea</li>
+                  <li>Coffee</li>
+                </ul>
+              </div>
+            </div>
+            <div className={styles.menuItem}>
+              <div className={styles.menuImage}>
+                <img src={gallery18} alt="Dinner at Lake View Villa" />
+                <div className={styles.menuIcon}>
+                  <Drumstick size={22} />
+                </div>
+              </div>
+
+              <div className={styles.menuContent}>
+                <div className={styles.menuTitle}>
+                  <div>
+                   
+                    <h3>Dinner</h3>
+                  </div>
+
+                  
+                </div>
+
+                <ul>
+                  <li>Chicken Starter</li>
+                  <li>Chicken Curry</li>
+                  <li>Veg Subzi</li>
+                  <li>Bhakri</li>
+                  <li>Dal Rice</li>
+                  <li>Papad</li>
+                  <li>Fresh Salad</li>
+                </ul>
+              </div>
+            </div>
           </div>
+
         </div>
 
-        <div className={styles.menuContent}>
-          <div className={styles.menuTitle}>
-            <span className={styles.itemNumber}>02</span>
-            <h3>Lunch</h3>
-          </div>
+      </section>
 
-          <ul className={styles.menuList}>
-            <li><Check size={16} /><span>Veg Subzi</span></li>
-            <li><Check size={16} /><span>Chicken Sukka</span></li>
-            <li><Check size={16} /><span>Dal Rice</span></li>
-            <li><Check size={16} /><span>Bhakri</span></li>
-            <li><Check size={16} /><span>Papad</span></li>
-            <li><Check size={16} /><span>Fresh Salad</span></li>
-          </ul>
-        </div>
-      </div>
-
-      {/* EVENING REFRESHMENTS */}
-      <div className={styles.menuItem}>
-        <div className={styles.menuImage}>
-          <img src={gallery17} alt="Evening refreshments at Lake View Villa" />
-          <div className={styles.menuIcon}>
-            <Coffee size={20} />
-          </div>
-        </div>
-
-        <div className={styles.menuContent}>
-          <div className={styles.menuTitle}>
-            <span className={styles.itemNumber}>03</span>
-            <h3>Evening Refreshments</h3>
-          </div>
-
-          <ul className={styles.menuList}>
-            <li><Check size={16} /><span>Tea</span></li>
-            <li><Check size={16} /><span>Coffee</span></li>
-          </ul>
-        </div>
-      </div>
-
-      {/* DINNER */}
-      <div className={styles.menuItem}>
-        <div className={styles.menuImage}>
-          <img src={gallery18} alt="Dinner at Lake View Villa" />
-          <div className={styles.menuIcon}>
-            <Drumstick size={20} />
-          </div>
-        </div>
-
-        <div className={styles.menuContent}>
-          <div className={styles.menuTitle}>
-            <span className={styles.itemNumber}>04</span>
-            <h3>Dinner</h3>
-          </div>
-
-          <ul className={styles.menuList}>
-            <li><Check size={16} /><span>Chicken Starter</span></li>
-            <li><Check size={16} /><span>Chicken Curry</span></li>
-            <li><Check size={16} /><span>Veg Subzi</span></li>
-            <li><Check size={16} /><span>Bhakri</span></li>
-            <li><Check size={16} /><span>Dal Rice</span></li>
-            <li><Check size={16} /><span>Papad</span></li>
-            <li><Check size={16} /><span>Fresh Salad</span></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
       {/* ================= DINING EXPERIENCE ================= */}
 
